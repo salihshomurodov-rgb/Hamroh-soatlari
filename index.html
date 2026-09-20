@@ -143,24 +143,33 @@
                 <input type="tel" id="phone" required placeholder="+998 90 123 45 67">
             </div>
 
+            <!-- Viloyatni tanlash -->
             <div class="form-group">
-                <label for="bts_branch">O'zingizga eng yaqin BTS filialini tanlang:</label>
+                <label for="region">Viloyatni tanlang:</label>
+                <select id="region" onchange="updateBtsBranches()" required>
+                    <option value="">-- Viloyatni tanlang --</option>
+                    <option value="Toshkent shahri">Toshkent shahri</option>
+                    <option value="Toshkent viloyati">Toshkent viloyati</option>
+                    <option value="Andijon viloyati">Andijon viloyati</option>
+                    <option value="Buxoro viloyati">Buxoro viloyati</option>
+                    <option value="Farg'ona viloyati">Farg'ona viloyati</option>
+                    <option value="Jizzax viloyati">Jizzax viloyati</option>
+                    <option value="Namangan viloyati">Namangan viloyati</option>
+                    <option value="Navoiy viloyati">Navoiy viloyati</option>
+                    <option value="Qashqadaryo viloyati">Qashqadaryo viloyati</option>
+                    <option value="Qoraqalpog'iston">Qoraqalpog'iston Respublika</option>
+                    <option value="Samarqand viloyati">Samarqand viloyati</option>
+                    <option value="Sirdaryo viloyati">Sirdaryo viloyati</option>
+                    <option value="Surxondaryo viloyati">Surxondaryo viloyati</option>
+                    <option value="Xorazm viloyati">Xorazm viloyati</option>
+                </select>
+            </div>
+
+            <!-- BTS Filialini tanlash -->
+            <div class="form-group">
+                <label for="bts_branch">BTS filialini (shahar/tuman) tanlang:</label>
                 <select id="bts_branch" required>
-                    <option value="">-- Filialni tanlang --</option>
-                    <option value="Toshkent shahri (Markaziy BTS)">Toshkent shahri (Markaziy BTS)</option>
-                    <option value="Toshkent viloyati (Chirchiq / Olmaliq BTS)">Toshkent viloyati BTS</option>
-                    <option value="Andijon BTS">Andijon BTS</option>
-                    <option value="Buxoro BTS">Buxoro BTS</option>
-                    <option value="Farg'ona BTS">Farg'ona BTS</option>
-                    <option value="Jizzax BTS">Jizzax BTS</option>
-                    <option value="Xorazm (Urganch BTS)">Xorazm (Urganch BTS)</option>
-                    <option value="Namangan BTS">Namangan BTS</option>
-                    <option value="Navoiy BTS">Navoiy BTS</option>
-                    <option value="Qashqadaryo (Qarshi BTS)">Qashqadaryo (Qarshi BTS)</option>
-                    <option value="Qoraqalpog'iston (Nukus BTS)">Qoraqalpog'iston (Nukus BTS)</option>
-                    <option value="Samarqand BTS">Samarqand BTS</option>
-                    <option value="Sirdaryo (Guliston BTS)">Sirdaryo (Guliston BTS)</option>
-                    <option value="Surxondaryo (Termiz BTS)">Surxondaryo (Termiz BTS)</option>
+                    <option value="">-- Oldin viloyatni tanlang --</option>
                 </select>
             </div>
 
@@ -187,19 +196,55 @@
     </div>
 
     <script>
+        const btsData = {
+            "Toshkent shahri": ["Toshkent Markaziy BTS", "Toshkent Yunusobod BTS", "Toshkent Chilonzor BTS", "Toshkent Sergeli BTS", "Toshkent Qo'yliq BTS", "Toshkent Yakkasaroy BTS"],
+            "Toshkent viloyati": ["Chirchiq BTS", "Olmaliq BTS", "Angren BTS", "Yangiyo'l BTS", "Bekobod BTS", "Parkent BTS", "G'azalkent BTS", "Pskent BTS", "Zangiota BTS"],
+            "Andijon viloyati": ["Andijon shahar BTS", "Asaka BTS", "Shahrixon BTS", "Xo'jaobod BTS", "Marhamat BTS", "Qorasuv BTS", "Izboskan BTS", "Paxtaobod BTS"],
+            "Buxoro viloyati": ["Buxoro shahar BTS", "G'ijduvon BTS", "Kogon BTS", "Qorakul BTS", "Olot BTS", "Vobkent BTS", "Romiytan BTS", "Jondor BTS"],
+            "Farg'ona viloyati": ["Farg'ona shahar BTS", "Qo'qon BTS", "Marg'ilon BTS", "Rishton BTS", "Oltiariq BTS", "Quvasoy BTS", "Beshariq BTS", "Toshloq BTS"],
+            "Jizzax viloyati": ["Jizzax shahar BTS", "G'allaorol BTS", "Zomin BTS", "Paxtakor BTS", "Dostlik BTS", "Zarbdor BTS"],
+            "Namangan viloyati": ["Namangan shahar BTS", "Chust BTS", "Kosonsoy BTS", "Pop BTS", "Uychi BTS", "To'raqo'rg'on BTS", "Uchqo'rg'on BTS"],
+            "Navoiy viloyati": ["Navoiy shahar BTS", "Zarafshon BTS", "Uchquduq BTS", "Karmana BTS", "Nurota BTS", "Qiziltepa BTS"],
+            "Qashqadaryo viloyati": ["Qarshi shahar BTS", "Shahrisabz BTS", "Kitob BTS", "Koson BTS", "G'uzor BTS", "Muborak BTS", "Yakkabog' BTS", "Kamashi BTS"],
+            "Qoraqalpog'iston": ["Nukus shahar BTS", "To'rtko'l BTS", "Beruniy BTS", "Xo'jayli BTS", "Qo'ng'irot BTS", "Chimboy BTS", "Taqiatosh BTS"],
+            "Samarqand viloyati": ["Samarqand shahar BTS", "Kattaqo'rg'on BTS", "Urgut BTS", "Jomboy BTS", "Bulung'ur BTS", "Oqdaryo BTS", "Payariq BTS", "Pastdarg'om BTS", "Ishtixon BTS"],
+            "Sirdaryo viloyati": ["Guliston shahar BTS", "Yangiyer BTS", "Shirin BTS", "Sirdaryo tuman BTS", "Boyovut BTS", "Oqoltin BTS"],
+            "Surxondaryo viloyati": ["Termiz shahar BTS", "Denov BTS", "Kumqo'rg'on BTS", "Sherobod BTS", "Jarqo'rg'on BTS", "Sariosiyo BTS", "Shourchi BTS"],
+            "Xorazm viloyati": ["Urganch shahar BTS", "Xiva BTS", "Xonqa BTS", "Gurlan BTS", "Shovot BTS", "Hazorasp BTS", "Qo'shko'pir BTS"]
+        };
+
+        function updateBtsBranches() {
+            const regionSelect = document.getElementById("region");
+            const btsSelect = document.getElementById("bts_branch");
+            const selectedRegion = regionSelect.value;
+
+            btsSelect.innerHTML = '<option value="">-- BTS filialini tanlang --</option>';
+
+            if (selectedRegion && btsData[selectedRegion]) {
+                btsData[selectedRegion].forEach(function(branch) {
+                    const option = document.createElement("option");
+                    option.value = branch;
+                    option.textContent = branch;
+                    btsSelect.appendChild(option);
+                });
+            }
+        }
+
         function sendOrder() {
             var name = document.getElementById('name').value;
             var phone = document.getElementById('phone').value;
+            var region = document.getElementById('region').value;
             var bts = document.getElementById('bts_branch').value;
 
-            if(!name || !phone || !bts) {
-                alert("Iltimos, barcha maydonlarni va BTS filialini tanlang!");
+            if(!name || !phone || !region || !bts) {
+                alert("Iltimos, barcha maydonlarni, viloyat va BTS filialini tanlang!");
                 return;
             }
 
             var text = "Yangi buyurtma!%0A%0A" +
                        "👤 Ismi: " + encodeURIComponent(name) + "%0A" +
                        "📞 Tel: " + encodeURIComponent(phone) + "%0A" +
+                       "📍 Viloyat: " + encodeURIComponent(region) + "%0A" +
                        "📦 BTS Filiali: " + encodeURIComponent(bts) + "%0A" +
                        "💰 Narxi: 170,000 so'm%0A" +
                        "⌚ Mahsulot: HAMROH juftlik soatlari";
