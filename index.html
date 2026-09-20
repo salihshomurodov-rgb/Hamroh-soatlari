@@ -38,6 +38,12 @@
             border: 1px solid #333;
             text-align: left;
         }
+        .info-card h2 {
+            color: #ffd700;
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
         .price { font-size: 22px; color: #28a745; font-weight: bold; }
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group label { display: block; margin-bottom: 5px; color: #ddd; }
@@ -64,11 +70,27 @@
         .btn:hover { background-color: #218838; }
         .payment-info {
             background-color: #2a2a2a;
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
             margin-top: 10px;
             font-size: 14px;
+            line-height: 1.6;
         }
+        .card-box {
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+            border: 1px solid #444;
+        }
+        .card-number {
+            font-size: 17px;
+            color: #ffd700;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        ul { padding-left: 20px; margin: 5px 0; }
+        li { margin-bottom: 5px; }
     </style>
 </head>
 <body>
@@ -88,10 +110,23 @@
     <!-- Soat Narxi va Ma'lumotlari -->
     <div class="info-card">
         <h2>Juftlik Soati Ma'lumotlari</h2>
-        <p><strong>Model:</strong> Geneva Elegant Juftlik To'plami</p>
-        <p><strong>Material:</strong> Zanglamaydigan po'lat va charm tasmapa</p>
-        <p><strong>To'plamda:</strong> 2 ta soat (Erkaklar va Ayollar uchun) + sovg'a qutisi</p>
-        <p class="price">Narxi: 290,000 so'm (Juftlik uchun)</p>
+        <p><strong>🛠 Tarkibi va xususiyatlari:</strong></p>
+        <ul>
+            <li><b>Korpus:</b> Metall qotishmasi</li>
+            <li><b>Tasma:</b> Silikon (yumshoq va qulay)</li>
+            <li><b>Oyna:</b> Mineral shisha</li>
+            <li><b>Mexanizm:</b> Kvarts</li>
+            <li><b>Bilaguzuklar:</b> Sun'iy tosh munchoqlar va metall bezak</li>
+            <li><b>Kulon:</b> Metall qotishmasi</li>
+        </ul>
+        <br>
+        <p><strong>🎁 To'plam tarkibi:</strong></p>
+        <ul>
+            <li>1 ta erkaklar soati</li>
+            <li>1 ta ayollar soati</li>
+            <li>2 ta juft bilaguzuk</li>
+        </ul>
+        <p class="price">Narxi: 170,000 so'm (Juftlik to'plami uchun)</p>
     </div>
 
     <!-- Buyurtma va To'lov Formasi -->
@@ -109,20 +144,41 @@
             </div>
 
             <div class="form-group">
-                <label for="address">Yetkazib berish manzili:</label>
-                <textarea id="address" rows="3" required placeholder="Shahar, tuman, ko'cha va uy raqami"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="payment">To'lov usuli:</label>
-                <select id="payment">
-                    <option value="Click / Payme">Click / Payme (Karta orqali)</option>
-                    <option value="Naqd">Naqd pul (Qabul qilib olganda)</option>
+                <label for="bts_branch">O'zingizga eng yaqin BTS filialini tanlang:</label>
+                <select id="bts_branch" required>
+                    <option value="">-- Filialni tanlang --</option>
+                    <option value="Toshkent shahri (Markaziy BTS)">Toshkent shahri (Markaziy BTS)</option>
+                    <option value="Toshkent viloyati (Chirchiq / Olmaliq BTS)">Toshkent viloyati BTS</option>
+                    <option value="Andijon BTS">Andijon BTS</option>
+                    <option value="Buxoro BTS">Buxoro BTS</option>
+                    <option value="Farg'ona BTS">Farg'ona BTS</option>
+                    <option value="Jizzax BTS">Jizzax BTS</option>
+                    <option value="Xorazm (Urganch BTS)">Xorazm (Urganch BTS)</option>
+                    <option value="Namangan BTS">Namangan BTS</option>
+                    <option value="Navoiy BTS">Navoiy BTS</option>
+                    <option value="Qashqadaryo (Qarshi BTS)">Qashqadaryo (Qarshi BTS)</option>
+                    <option value="Qoraqalpog'iston (Nukus BTS)">Qoraqalpog'iston (Nukus BTS)</option>
+                    <option value="Samarqand BTS">Samarqand BTS</option>
+                    <option value="Sirdaryo (Guliston BTS)">Sirdaryo (Guliston BTS)</option>
+                    <option value="Surxondaryo (Termiz BTS)">Surxondaryo (Termiz BTS)</option>
                 </select>
             </div>
 
             <div class="payment-info">
-                💳 <strong>Karta orqali to'lov:</strong> <code>8600 **** **** ****</code> (Salih Sh.)
+                💳 <strong>To'lov uchun karta raqamlari:</strong><br>
+                Egasining ismi: <strong>Alibek Shomurodov</strong>
+                
+                <div class="card-box">
+                    🔹 <b>Uzcard / Humo (Oddiy karta):</b><br>
+                    <span class="card-number">5614 6812 1336 3249</span>
+                </div>
+
+                <div class="card-box">
+                    🔹 <b>Uzum Karta / VISA:</b><br>
+                    <span class="card-number">4916 9903 6410 2761</span>
+                </div>
+                <br>
+                <em>📌 <b>Eslatma:</b> To'lovni amalga oshirgach, to'lov cheki (kvitansiya skrinshoti)ni Telegram orqali yuborishingizni so'raymiz.</em>
             </div>
             <br>
 
@@ -134,19 +190,18 @@
         function sendOrder() {
             var name = document.getElementById('name').value;
             var phone = document.getElementById('phone').value;
-            var address = document.getElementById('address').value;
-            var payment = document.getElementById('payment').value;
+            var bts = document.getElementById('bts_branch').value;
 
-            if(!name || !phone || !address) {
-                alert("Iltimos, barcha maydonlarni to'ldiring!");
+            if(!name || !phone || !bts) {
+                alert("Iltimos, barcha maydonlarni va BTS filialini tanlang!");
                 return;
             }
 
             var text = "Yangi buyurtma!%0A%0A" +
                        "👤 Ismi: " + encodeURIComponent(name) + "%0A" +
                        "📞 Tel: " + encodeURIComponent(phone) + "%0A" +
-                       "📍 Manzil: " + encodeURIComponent(address) + "%0A" +
-                       "💳 To'lov: " + encodeURIComponent(payment) + "%0A" +
+                       "📦 BTS Filiali: " + encodeURIComponent(bts) + "%0A" +
+                       "💰 Narxi: 170,000 so'm%0A" +
                        "⌚ Mahsulot: HAMROH juftlik soatlari";
 
             window.open("https://t.me/salihshomurodov?text=" + text, '_blank');
