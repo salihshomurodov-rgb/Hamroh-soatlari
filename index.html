@@ -168,8 +168,6 @@
             font-weight: bold;
             text-align: center;
         }
-        ul { padding-left: 20px; margin: 5px 0; }
-        li { margin-bottom: 5px; }
 
         /* Modal oyna dizayni va Galereya */
         .modal {
@@ -196,12 +194,16 @@
             max-height: 90vh;
             overflow-y: auto;
         }
-        .main-modal-img {
+        .main-modal-img, .main-modal-video {
             width: 100%;
             height: 300px;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 10px;
+            display: none;
+        }
+        .main-modal-img.active, .main-modal-video.active {
+            display: block;
         }
         .thumbnails-container {
             display: flex;
@@ -210,7 +212,7 @@
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
-        .thumb-img {
+        .thumb-item {
             width: 60px;
             height: 60px;
             object-fit: cover;
@@ -218,9 +220,32 @@
             cursor: pointer;
             border: 2px solid #444;
             transition: border-color 0.2s;
+            position: relative;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .thumb-img:hover, .thumb-img.active {
+        .thumb-item img, .thumb-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .thumb-item:hover, .thumb-item.active {
             border-color: #ffd700;
+        }
+        .video-indicator {
+            position: absolute;
+            font-size: 16px;
+            color: #fff;
+            background: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .close-btn {
             color: #aaa;
@@ -255,21 +280,28 @@
 
     <!-- Mahsulotlar Katalogi -->
     <h2 style="color: #ffd700;">Bizning Soatlarimiz</h2>
-    <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil rasmlar va ma'lumot olish uchun soat ustiga bosing 👇</p>
+    <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil rasmlar va video ko'rish uchun soat ustiga bosing 👇</p>
     
     <div class="products-grid">
         
-        <!-- 1-Mahsulot -->
-        <div class="product-card" onclick="openModal('HAMROH Juftlik Soati - 170,000 so\'m', ['photo_2026-09-20_13-16-03.jpg'], '170,000 so\'m', '2 ta soat + 2 ta bilaguzuk to\'plami. Silikon tasma, kvarts mexanizm, zamonaviy dizayn.')">
+        <!-- 1-Mahsulot (Video va Rasm bilan: 'video_2026.mp4' o'rniga o'zingiz yuklagan video nomini yozing) -->
+        <div class="product-card" onclick="openModal('HAMROH Juftlik Soati - 170,000 so\'m', [
+            {type: 'image', src: 'photo_2026-09-20_13-16-03.jpg'},
+            {type: 'video', src: 'video_2026-09-20_13-16-03.mp4'}
+        ], '170,000 so\'m', '2 ta soat + 2 ta bilaguzuk to\'plami. Silikon tasma, kvarts mexanizm, zamonaviy dizayn.')">
             <img src="photo_2026-09-20_13-16-03.jpg" alt="HAMROH Juftlik Soati">
             <div class="product-title">HAMROH Juftlik Soati</div>
             <div class="product-price">170,000 so'm</div>
             <p style="font-size: 13px; color: #aaa;">2 ta soat + 2 ta bilaguzuk to'plami...</p>
-            <div class="click-hint">🔍 Rasmlarni ko'rish</div>
+            <div class="click-hint">🔍 Rasm va videoni ko'rish</div>
         </div>
 
         <!-- 2-Mahsulot -->
-        <div class="product-card" onclick="openModal('Hashamatli Juftlik Soati - 180,000 so\'m', ['t_product_540_high.webp', 'feedback_40.webp', 'feedback_40 (1).webp'], '180,000 so\'m', 'Metall korpus, suvga chidamli, yuqori sifatli kvarts mexanizm. Juftliklar uchun eng sara tanlov.')">
+        <div class="product-card" onclick="openModal('Hashamatli Juftlik Soati - 180,000 so\'m', [
+            {type: 'image', src: 't_product_540_high.webp'},
+            {type: 'image', src: 'feedback_40.webp'},
+            {type: 'image', src: 'feedback_40 (1).webp'}
+        ], '180,000 so\'m', 'Metall korpus, suvga chidamli, yuqori sifatli kvarts mexanizm. Juftliklar uchun eng sara tanlov.')">
             <img src="t_product_540_high.webp" alt="Hashamatli Juftlik Soati">
             <div class="product-title">Hashamatli Juftlik Soati</div>
             <div class="product-price">180,000 so'm</div>
@@ -284,7 +316,11 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             
+            <!-- Katta rasm va video maydoni -->
             <img id="modalMainImg" class="main-modal-img" src="" alt="Mahsulot rasmi">
+            <video id="modalMainVideo" class="main-modal-video" controls></video>
+            
+            <!-- Miniatyuralar -->
             <div id="modalThumbnails" class="thumbnails-container"></div>
 
             <h3 id="modalTitle" style="color: #ffd700; margin: 10px 0 5px 0;"></h3>
@@ -385,35 +421,84 @@
     <script>
         let selectedProductName = "";
 
-        function openModal(title, images, price, desc) {
+        function openModal(title, items, price, desc) {
             selectedProductName = title;
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalPrice').textContent = price;
             document.getElementById('modalDesc').textContent = desc;
 
             const mainImg = document.getElementById('modalMainImg');
+            const mainVideo = document.getElementById('modalMainVideo');
             const thumbContainer = document.getElementById('modalThumbnails');
             thumbContainer.innerHTML = '';
 
-            mainImg.src = images[0];
+            // Videoni to'xtatish (agar oldindan ochiq bo'lsa)
+            mainVideo.pause();
 
-            images.forEach((imgSrc, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = imgSrc;
-                thumb.className = 'thumb-img' + (index === 0 ? ' active' : '');
+            function showItem(item, thumbElement) {
+                document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+                thumbElement.classList.add('active');
+
+                if (item.type === 'image') {
+                    mainVideo.style.display = 'none';
+                    mainVideo.pause();
+                    mainImg.style.display = 'block';
+                    mainImg.src = item.src;
+                } else {
+                    mainImg.style.display = 'none';
+                    mainVideo.style.display = 'block';
+                    mainVideo.src = item.src;
+                }
+            }
+
+            // Birinchi elementni ochish
+            if (items.length > 0) {
+                // Vaqtinchalik birinchi element elementini yaratamiz
+            }
+
+            items.forEach((item, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'thumb-item' + (index === 0 ? ' active' : '');
+
+                if (item.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    thumb.appendChild(img);
+                } else {
+                    const vidIcon = document.createElement('div');
+                    vidIcon.className = 'video-indicator';
+                    vidIcon.innerHTML = '▶';
+                    
+                    const vid = document.createElement('video');
+                    vid.src = item.src;
+                    thumb.appendChild(vid);
+                    thumb.appendChild(vidIcon);
+                }
+
                 thumb.onclick = function() {
-                    mainImg.src = imgSrc;
-                    document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
+                    showItem(item, thumb);
                 };
+
                 thumbContainer.appendChild(thumb);
             });
+
+            // Dastlabkini ko'rsatish
+            if(items[0].type === 'image') {
+                mainImg.style.display = 'block';
+                mainVideo.style.display = 'none';
+                mainImg.src = items[0].src;
+            } else {
+                mainImg.style.display = 'none';
+                mainVideo.style.display = 'block';
+                mainVideo.src = items[0].src;
+            }
 
             document.getElementById('productModal').style.display = 'flex';
         }
 
         function closeModal() {
             document.getElementById('productModal').style.display = 'none';
+            document.getElementById('modalMainVideo').pause();
         }
 
         function selectThisProduct() {
@@ -443,7 +528,7 @@
             "Farg'ona viloyati": ["Farg'ona shahar BTS", "Qo'qon BTS", "Marg'ilon BTS", "Rishton BTS", "Oltiariq BTS", "Quvasoy BTS", "Beshariq BTS", "Toshloq BTS"],
             "Jizzax viloyati": ["Jizzax shahar BTS", "G'allaorol BTS", "Zomin BTS", "Paxtakor BTS", "Dostlik BTS", "Zarbdor BTS"],
             "Namangan viloyati": ["Namangan shahar BTS", "Chust BTS", "Kosonsoy BTS", "Pop BTS", "Uychi BTS", "To'raqo'rg'on BTS", "Uchqo'rg'on BTS"],
-            "Navoiy viloyati": ["Navoiy shahar BTS", "Zarafshon BTS", "Uchquduq BTS", "Karmana BTS", "Nurota BTS", "Qiziltepa BTS"],
+            "Navoiy viloyati": ["Navoiy shahar boshqarmasi", "Zarafshon BTS", "Uchquduq BTS", "Karmana BTS", "Nurota BTS", "Qiziltepa BTS"],
             "Qashqadaryo viloyati": ["Qarshi shahar BTS", "Shahrisabz BTS", "Kitob BTS", "Koson BTS", "G'uzor BTS", "Muborak BTS", "Yakkabog' BTS", "Kamashi BTS"],
             "Qoraqalpog'iston": ["Nukus shahar BTS", "To'rtko'l BTS", "Beruniy BTS", "Xo'jayli BTS", "Qo'ng'irot BTS", "Chimboy BTS", "Taqiatosh BTS"],
             "Samarqand viloyati": ["Samarqand shahar BTS", "Kattaqo'rg'on BTS", "Urgut BTS", "Jomboy BTS", "Bulung'ur BTS", "Oqdaryo BTS", "Payariq BTS", "Pastdarg'om BTS", "Ishtixon BTS"],
