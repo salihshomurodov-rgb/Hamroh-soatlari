@@ -271,7 +271,6 @@
         }
         .modal-btn:hover { background-color: #e6c200; }
         
-        /* Modal ichidagi to'liq tavsif uchun dizayn */
         .modal-desc-box {
             text-align: left;
             background: #252525;
@@ -334,6 +333,22 @@
             <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
+        <!-- 3-Mahsulot (Minimalist Klassik Juftlik Soati) -->
+        <div class="product-card" onclick="openModal('Minimalist Klassik Juftlik Soati - 175,000 so\'m', [
+            {type: 'image', src: '6dc71847-a5f8-4c68-a475-ce046a3bbc82.png'}
+        ], '175,000 so\'m', `
+            <b>To'plam tarkibi:</b> 2 ta zamonaviy minimalist dizayndagi qo'l soati.<br>
+            <b>Mexanizm:</b> Aniq va ishonchli kvarts mexanizmi.<br>
+            <b>Tasma:</b> Yuqori sifatli jigarrang charm tasma.<br>
+            <b>Dizayn:</b> Och rangli studiya fonida suratga olingan, har qanday kiyim uslubiga mos keladigan nafis va yengil ko'rinish.
+        `)">
+            <img src="6dc71847-a5f8-4c68-a475-ce046a3bbc82.png" alt="Minimalist Klassik Juftlik Soati">
+            <div class="product-title">Minimalist Klassik Juftlik Soati</div>
+            <div class="product-price">175,000 so'm</div>
+            <p style="font-size: 13px; color: #aaa;">Jigarrang charm tasma, oq siferblat...</p>
+            <div class="click-hint">🔍 Batafsil ko'rish</div>
+        </div>
+
     </div>
 
     <!-- Galereya va Ma'lumot uchun Modal Oyna -->
@@ -349,7 +364,6 @@
             <h3 id="modalTitle" style="color: #ffd700; margin: 10px 0 5px 0;"></h3>
             <div id="modalPrice" style="color: #28a745; font-size: 20px; font-weight: bold; margin-bottom: 8px;"></div>
             
-            <!-- Batafsil ma'lumot chiqadigan joy -->
             <div id="modalDesc" class="modal-desc-box"></div>
             
             <button class="modal-btn" onclick="selectThisProduct()">Bu soatni buyurtma qilish</button>
@@ -375,6 +389,7 @@
                     <option value="">-- Soatni tanlang --</option>
                     <option value="HAMROH Juftlik Soati - 170,000 so'm">HAMROH Juftlik Soati (170,000 so'm)</option>
                     <option value="Hashamatli Juftlik Soati - 180,000 so'm">Hashamatli Juftlik Soati (180,000 so'm)</option>
+                    <option value="Minimalist Klassik Juftlik Soati - 175,000 so'm">Minimalist Klassik Juftlik Soati (175,000 so'm)</option>
                 </select>
             </div>
 
