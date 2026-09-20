@@ -186,7 +186,7 @@
             background-color: #1e1e1e;
             padding: 20px;
             border-radius: 12px;
-            max-width: 420px;
+            max-width: 450px;
             width: 90%;
             text-align: center;
             border: 1px solid #ffd700;
@@ -229,7 +229,7 @@
         .thumb-item img, .thumb-item video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: qo'shish;
             border-radius: 4px;
         }
         .thumb-item:hover, .thumb-item.active {
@@ -270,6 +270,22 @@
             width: 100%;
         }
         .modal-btn:hover { background-color: #e6c200; }
+        
+        /* Modal ichidagi to'liq tavsif uchun dizayn */
+        .modal-desc-box {
+            text-align: left;
+            background: #252525;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .modal-desc-box ul {
+            margin: 5px 0 0 20px;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -280,35 +296,46 @@
 
     <!-- Mahsulotlar Katalogi -->
     <h2 style="color: #ffd700;">Bizning Soatlarimiz</h2>
-    <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil rasmlar va videolar ko'rish uchun soat ustiga bosing 👇</p>
+    <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil ma'lumot, rasmlar va videolarni ko'rish uchun soat ustiga bosing 👇</p>
     
     <div class="products-grid">
         
-        <!-- 1-Mahsulot (1 ta rasm va 3 ta yangi video) -->
+        <!-- 1-Mahsulot (HAMROH Juftlik Soati) -->
         <div class="product-card" onclick="openModal('HAMROH Juftlik Soati - 170,000 so\'m', [
             {type: 'image', src: 'photo_2026-09-20_13-16-03.jpg'},
             {type: 'video', src: 'video_2026-09-20_13-20-21.mp4'},
             {type: 'video', src: 'video_2026-09-20_13-20-24.mp4'},
             {type: 'video', src: 'video_2026-09-20_13-20-27.mp4'}
-        ], '170,000 so\'m', '2 ta soat + 2 ta bilaguzuk to\'plami. Silikon tasma, kvarts mexanizm, zamonaviy dizayn.')">
+        ], '170,000 so\'m', `
+            <b>To'plam tarkibi:</b> 2 ta qulay qo'l soati + 2 ta zamonaviy magnitli bilaguzuk.<br>
+            <b>Mexanizm:</b> Yuqori aniqlikdagi Yaponiya kvarts mexanizmi.<br>
+            <b>Tasma materiali:</b> Yumshoq, pishiq va hipoalerjenik silikon.<br>
+            <b>Dizayn va xususiyatlari:</b> Zamonaviy, qora va oq rangdagi elegant ko'rinish. Kundalik foydalanish va sovg'a uchun mukammal tanlov!
+        ')">
             <img src="photo_2026-09-20_13-16-03.jpg" alt="HAMROH Juftlik Soati">
             <div class="product-title">HAMROH Juftlik Soati</div>
             <div class="product-price">170,000 so'm</div>
             <p style="font-size: 13px; color: #aaa;">2 ta soat + 2 ta bilaguzuk to'plami...</p>
-            <div class="click-hint">🔍 Rasm va 3 ta videoni ko'rish</div>
+            <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
-        <!-- 2-Mahsulot -->
+        <!-- 2-Mahsulot (Hashamatli Juftlik Soati) -->
         <div class="product-card" onclick="openModal('Hashamatli Juftlik Soati - 180,000 so\'m', [
             {type: 'image', src: 't_product_540_high.webp'},
             {type: 'image', src: 'feedback_40.webp'},
             {type: 'image', src: 'feedback_40 (1).webp'}
-        ], '180,000 so\'m', 'Metall korpus, suvga chidamli, yuqori sifatli kvarts mexanizm. Juftliklar uchun eng sara tanlov.')">
+        ], '180,000 so\'m', `
+            <b>To'plam tarkibi:</b> 2 ta premium klassdagi juftlik soati.<br>
+            <b>Mexanizm:</b> Ishonchli va bardoshli kvarts mexanizm.<br>
+            <b>Material:</b> Mustahkam zanglamaydigan po'latdan yasalgan korpus.<br>
+            <b>Himoya:</b> Suv sachrashi va namlikdan himoyalangan.<br>
+            <b>Afzalliklari:</b> Klassik va dabdabali ko'rinish, sevgan insoningiz uchun eng esda qolarli sovg'a!
+        ')">
             <img src="t_product_540_high.webp" alt="Hashamatli Juftlik Soati">
             <div class="product-title">Hashamatli Juftlik Soati</div>
             <div class="product-price">180,000 so'm</div>
             <p style="font-size: 13px; color: #aaa;">Metall korpus, suvga chidamli...</p>
-            <div class="click-hint">🔍 Galereyani ochish</div>
+            <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
     </div>
@@ -325,7 +352,9 @@
 
             <h3 id="modalTitle" style="color: #ffd700; margin: 10px 0 5px 0;"></h3>
             <div id="modalPrice" style="color: #28a745; font-size: 20px; font-weight: bold; margin-bottom: 8px;"></div>
-            <p id="modalDesc" style="color: #ccc; font-size: 14px; line-height: 1.5; margin-bottom: 15px;"></p>
+            
+            <!-- Batafsil ma'lumot chiqadigan joy -->
+            <div id="modalDesc" class="modal-desc-box"></div>
             
             <button class="modal-btn" onclick="selectThisProduct()">Bu soatni buyurtma qilish</button>
         </div>
@@ -421,11 +450,11 @@
     <script>
         let selectedProductName = "";
 
-        function openModal(title, items, price, desc) {
+        function openModal(title, items, price, descHtml) {
             selectedProductName = title;
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalPrice').textContent = price;
-            document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('modalDesc').innerHTML = descHtml;
 
             const mainImg = document.getElementById('modalMainImg');
             const mainVideo = document.getElementById('modalMainVideo');
@@ -520,7 +549,7 @@
             "Buxoro viloyati": ["Buxoro shahar BTS", "G'ijduvon BTS", "Kogon BTS", "Qorakul BTS", "Olot BTS", "Vobkent BTS", "Romiytan BTS", "Jondor BTS"],
             "Farg'ona viloyati": ["Farg'ona shahar BTS", "Qo'qon BTS", "Marg'ilon BTS", "Rishton BTS", "Oltiariq BTS", "Quvasoy BTS", "Beshariq BTS", "Toshloq BTS"],
             "Jizzax viloyati": ["Jizzax shahar BTS", "G'allaorol BTS", "Zomin BTS", "Paxtakor BTS", "Dostlik BTS", "Zarbdor BTS"],
-            "Namangan viloyati": ["Namangan shahar BTS", "Chust BTS", "Kosonsoy BTS", "Pop BTS", "Uychi BTS", "To'raqo'rg'ون BTS", "Uchqo'rg'on BTS"],
+            "Namangan viloyati": ["Namangan shahar BTS", "Chust BTS", "Kosonsoy BTS", "Pop BTS", "Uychi BTS", "To'raqo'rg'on BTS", "Uchqo'rg'on BTS"],
             "Navoiy viloyati": ["Navoiy shahar boshqarmasi", "Zarafshon BTS", "Uchquduq BTS", "Karmana BTS", "Nurota BTS", "Qiziltepa BTS"],
             "Qashqadaryo viloyati": ["Qarshi shahar BTS", "Shahrisabz BTS", "Kitob BTS", "Koson BTS", "G'uzor BTS", "Muborak BTS", "Yakkabog' BTS", "Kamashi BTS"],
             "Qoraqalpog'iston": ["Nukus shahar BTS", "To'rtko'l BTS", "Beruniy BTS", "Xo'jayli BTS", "Qo'ng'irot BTS", "Chimboy BTS", "Taqiatosh BTS"],
