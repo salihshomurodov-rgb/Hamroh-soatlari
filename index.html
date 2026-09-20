@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAMROH juftlik soatlari online do'koni</title>
+    <title>HAMROH soatlar online do'koni</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,22 +23,45 @@
             font-size: 15px;
             font-weight: bold;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
-        .gallery {
+        
+        /* Mahsulotlar katalogi */
+        .products-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             margin-bottom: 30px;
         }
-        .gallery img, .gallery video {
-            width: 200px;
-            height: 320px;
-            object-fit: cover;
-            border-radius: 10px;
+        .product-card {
+            background-color: #1e1e1e;
             border: 1px solid #333;
+            border-radius: 12px;
+            width: 280px;
+            padding: 15px;
+            text-align: center;
+            box-sizing: border-box;
         }
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .product-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 10px 0 5px 0;
+        }
+        .product-price {
+            font-size: 18px;
+            color: #28a745;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
         .info-card {
             background-color: #1e1e1e;
             max-width: 500px;
@@ -54,8 +77,6 @@
             border-bottom: 1px solid #333;
             padding-bottom: 10px;
         }
-        .price { font-size: 22px; color: #28a745; font-weight: bold; margin-bottom: 5px; }
-        .free-delivery-text { font-size: 15px; color: #ffd700; font-weight: bold; }
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group label { display: block; margin-bottom: 5px; color: #ddd; }
         .form-group input, .form-group textarea, .form-group select {
@@ -141,46 +162,36 @@
 </head>
 <body>
 
-    <h1>HAMROH juftlik soatlari online do'koni</h1>
+    <h1>HAMROH soatlar online do'koni</h1>
     <p class="subtitle">Eng sifatli va go'zal soatlar to'plami</p>
     <div class="delivery-badge">🚚 O'zbekiston bo'ylab BTS orqali 3 kun ichida yetkazib beramiz va yetkazib berish BEPUL!</div>
 
-    <!-- Rasm va Videolar -->
-    <div class="gallery">
-        <img src="photo_2026-09-20_13-16-03.jpg" alt="Soat 1">
-        <video src="video_2026-09-20_13-20-21.mp4" controls></video>
-        <video src="video_2026-09-20_13-20-24.mp4" controls></video>
-        <video src="video_2026-09-20_13-20-27.mp4" controls></video>
-    </div>
+    <!-- Mahsulotlar Katalogi -->
+    <h2 style="color: #ffd700;">Bizning Soatlarimiz</h2>
+    <div class="products-grid">
+        
+        <!-- 1-Mahsulot -->
+        <div class="product-card">
+            <img src="photo_2026-09-20_13-16-03.jpg" alt="HAMROH Juftlik Soati">
+            <div class="product-title">HAMROH Juftlik Soati</div>
+            <div class="product-price">170,000 so'm</div>
+            <p style="font-size: 13px; color: #aaa;">2 ta soat + 2 ta bilaguzuk to'plami. Silikon tasma, kvarts mexanizm.</p>
+        </div>
 
-    <!-- Soat Narxi va Ma'lumotlari -->
-    <div class="info-card">
-        <h2>Juftlik Soati Ma'lumotlari</h2>
-        <p><strong>🛠 Tarkibi va xususiyatlari:</strong></p>
-        <ul>
-            <li><b>Korpus:</b> Metall qotishmasi</li>
-            <li><b>Tasma:</b> Silikon (yumshoq va qulay)</li>
-            <li><b>Oyna:</b> Mineral shisha</li>
-            <li><b>Mexanizm:</b> Kvarts</li>
-            <li><b>Bilaguzuklar:</b> Sun'iy tosh munchoqlar va metall bezak</li>
-            <li><b>Kulon:</b> Metall qotishmasi</li>
-        </ul>
-        <br>
-        <p><strong>🎁 To'plam tarkibi:</strong></p>
-        <ul>
-            <li>1 ta erkaklar soati</li>
-            <li>1 ta ayollar soati</li>
-            <li>2 ta juft bilaguzuk</li>
-        </ul>
-        <p class="price">Narxi: 170,000 so'm (Juftlik to'plami uchun)</p>
-        <p class="free-delivery-text">🚚 O'zbekiston bo'ylab BTS orqali 3 kun ichida yetkazib beramiz va yetkazib berish BEPUL!</p>
+        <!-- 2-Mahsulot (Yangi qo'shilgan) -->
+        <div class="product-card">
+            <img src="photo_2026-09-20_13-16-26.jpg" alt="Hashamatli Juftlik Soati">
+            <div class="product-title">Hashamatli Juftlik Soati</div>
+            <div class="product-price">180,000 so'm</div>
+            <p style="font-size: 13px; color: #aaa;">Metall korpus, suvga chidamli, yuqori sifatli kvarts mexanizm.</p>
+        </div>
+
     </div>
 
     <!-- Buyurtma va To'lov Formasi -->
     <div class="info-card">
         <h2>Buyurtma berish</h2>
 
-        <!-- Buyurtma muvaffaqiyatli qabul qilinganda chiqadigan xabar -->
         <div id="successMessage" class="success-message">
             ✅ Buyurtmangiz muvaffaqiyatli qabul qilindi!<br>
             <span style="font-size: 14px; font-weight: normal; color: #e0e0e0;">
@@ -189,6 +200,17 @@
         </div>
 
         <form id="orderForm">
+            
+            <!-- Mahsulotni tanlash bo'limi -->
+            <div class="form-group">
+                <label for="product_select">Qaysi soatni buyurtma qilmoqchisiz?</label>
+                <select id="product_select" required>
+                    <option value="">-- Soatni tanlang --</option>
+                    <option value="HAMROH Juftlik Soati - 170,000 so'm">HAMROH Juftlik Soati (170,000 so'm)</option>
+                    <option value="Hashamatli Juftlik Soati - 180,000 so'm">Hashamatli Juftlik Soati (180,000 so'm)</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="name">Ismingiz:</label>
                 <input type="text" id="name" required placeholder="Masalan: Ali Valiyev">
@@ -199,7 +221,6 @@
                 <input type="tel" id="phone" required placeholder="+998 90 123 45 67">
             </div>
 
-            <!-- Viloyatni tanlash -->
             <div class="form-group">
                 <label for="region">Viloyatni tanlang:</label>
                 <select id="region" onchange="updateBtsBranches()" required>
@@ -221,7 +242,6 @@
                 </select>
             </div>
 
-            <!-- BTS Filialini tanlash -->
             <div class="form-group">
                 <label for="bts_branch">BTS filialini (shahar/tuman) tanlang:</label>
                 <select id="bts_branch" required>
@@ -249,7 +269,6 @@
 
             <button type="button" class="btn" onclick="sendOrder()">Buyurtmani Telegram orqali yuborish</button>
             
-            <!-- Savollar va qo'shimcha ma'lumot uchun blok -->
             <div class="contact-box">
                 <p style="margin-bottom: 8px; color: #ccc;">Qo'shimcha ma'lumot olish yoki savollaringiz bo'lsa:</p>
                 <a href="https://t.me/salihshomurodov" target="_blank" class="btn-tg">💬 Telegram orqali savol berish</a>
@@ -293,13 +312,14 @@
         }
 
         function sendOrder() {
+            var product = document.getElementById('product_select').value;
             var name = document.getElementById('name').value;
             var phone = document.getElementById('phone').value;
             var region = document.getElementById('region').value;
             var bts = document.getElementById('bts_branch').value;
 
-            if(!name || !phone || !region || !bts) {
-                alert("Iltimos, barcha maydonlarni, viloyat va BTS filialini tanlang!");
+            if(!product || !name || !phone || !region || !bts) {
+                alert("Iltimos, barcha maydonlarni hamda soat turini tanlang!");
                 return;
             }
 
@@ -308,13 +328,12 @@
             successBox.scrollIntoView({ behavior: 'smooth' });
 
             var text = "Yangi buyurtma!%0A%0A" +
+                       "⌚ Mahsulot: " + encodeURIComponent(product) + "%0A" +
                        "👤 Ismi: " + encodeURIComponent(name) + "%0A" +
                        "📞 Tel: " + encodeURIComponent(phone) + "%0A" +
                        "📍 Viloyat: " + encodeURIComponent(region) + "%0A" +
                        "📦 BTS Filiali: " + encodeURIComponent(bts) + "%0A" +
-                       "💰 Narxi: 170,000 so'm%0A" +
-                       "🚚 Yetkazib berish: BTS orqali 3 kun ichida (BEPUL)%0A" +
-                       "⌚ Mahsulot: HAMROH juftlik soatlari";
+                       "🚚 Yetkazib berish: BTS orqali 3 kun ichida (BEPUL)";
 
             window.open("https://t.me/salihshomurodov?text=" + text, '_blank');
         }
