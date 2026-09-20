@@ -3,28 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAMROH juftlik soatlari</title>
+    <title>HAMROH juftlik soatlari online do'koni</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #111; color: #fff; margin: 0; padding: 20px; }
-        h1 { color: #f1c40f; }
-        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px; }
-        img, video { max-width: 300px; border-radius: 10px; border: 2px solid #333; }
-        .btn { display: inline-block; margin-top: 20px; padding: 12px 24px; background: #25d366; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 { color: #ffd700; margin-bottom: 5px; }
+        p.subtitle { color: #ccc; margin-top: 0; }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .gallery img, .gallery video {
+            width: 200px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        .info-card {
+            background-color: #1e1e1e;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            text-align: left;
+        }
+        .price { font-size: 22px; color: #28a745; font-weight: bold; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; color: #ddd; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background-color: #2a2a2a;
+            color: #fff;
+            box-sizing: border-box;
+        }
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 14px 28px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+        .btn:hover { background-color: #218838; }
+        .payment-info {
+            background-color: #2a2a2a;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
+
     <h1>HAMROH juftlik soatlari online do'koni</h1>
-    <p>Eng sifatli va go'zal soatlar to'plami</p>
-    
+    <p class="subtitle">Eng sifatli va go'zal soatlar to'plami</p>
+
+    <!-- Rasm va Videolar -->
     <div class="gallery">
-        <img src="photo_2026-09-20_13-16-03.jpg" alt="Soat">
-        <img src="photo_2026-09-20_13-16-26.jpg" alt="Soat">
-        <video controls src="video_2026-09-20_13-20-21.mp4"></video>
-        <video controls src="video_2026-09-20_13-20-24.mp4"></video>
-        <video controls src="video_2026-09-20_13-20-27.mp4"></video>
+        <img src="photo_2026-09-20_13-16-03.jpg" alt="Soat 1">
+        <img src="photo_2026-09-20_13-16-26.jpg" alt="Soat 2">
+        <video src="video_2026-09-20_13-20-21.mp4" controls></video>
+        <video src="video_2026-09-20_13-20-24.mp4" controls></video>
+        <video src="video_2026-09-20_13-20-27.mp4" controls></video>
     </div>
 
-    <br>
-    <a href="https://t.me/salihshomurodov" class="btn" target="_blank">Telegram orqali buyurtma berish</a>
+    <!-- Soat Narxi va Ma'lumotlari -->
+    <div class="info-card">
+        <h2>Juftlik Soati Ma'lumotlari</h2>
+        <p><strong>Model:</strong> Geneva Elegant Juftlik To'plami</p>
+        <p><strong>Material:</strong> Zanglamaydigan po'lat va charm tasmapa</p>
+        <p><strong>To'plamda:</strong> 2 ta soat (Erkaklar va Ayollar uchun) + sovg'a qutisi</p>
+        <p class="price">Narxi: 290,000 so'm (Juftlik uchun)</p>
+    </div>
+
+    <!-- Buyurtma va To'lov Formasi -->
+    <div class="info-card">
+        <h2>Buyurtma berish</h2>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="name">Ismingiz:</label>
+                <input type="text" id="name" required placeholder="Masalan: Ali Valiyev">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Telefon raqamingiz:</label>
+                <input type="tel" id="phone" required placeholder="+998 90 123 45 67">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Yetkazib berish manzili:</label>
+                <textarea id="address" rows="3" required placeholder="Shahar, tuman, ko'cha va uy raqami"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="payment">To'lov usuli:</label>
+                <select id="payment">
+                    <option value="Click / Payme">Click / Payme (Karta orqali)</option>
+                    <option value="Naqd">Naqd pul (Qabul qilib olganda)</option>
+                </select>
+            </div>
+
+            <div class="payment-info">
+                💳 <strong>Karta orqali to'lov:</strong> <code>8600 **** **** ****</code> (Salih Sh.)
+            </div>
+            <br>
+
+            <button type="button" class="btn" onclick="sendOrder()">Buyurtmani Telegram orqali yuborish</button>
+        </form>
+    </div>
+
+    <script>
+        function sendOrder() {
+            var name = document.getElementById('name').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+            var payment = document.getElementById('payment').value;
+
+            if(!name || !phone || !address) {
+                alert("Iltimos, barcha maydonlarni to'ldiring!");
+                return;
+            }
+
+            var text = "Yangi buyurtma!%0A%0A" +
+                       "👤 Ismi: " + encodeURIComponent(name) + "%0A" +
+                       "📞 Tel: " + encodeURIComponent(phone) + "%0A" +
+                       "📍 Manzil: " + encodeURIComponent(address) + "%0A" +
+                       "💳 To'lov: " + encodeURIComponent(payment) + "%0A" +
+                       "⌚ Mahsulot: HAMROH juftlik soatlari";
+
+            window.open("https://t.me/salihshomurodov?text=" + text, '_blank');
+        }
+    </script>
+
 </body>
 </html>
