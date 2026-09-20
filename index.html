@@ -68,6 +68,23 @@
             font-weight: bold;
         }
         .btn:hover { background-color: #218838; }
+        .btn-tg {
+            background-color: #0088cc;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .btn-tg:hover { background-color: #0077b5; }
         .payment-info {
             background-color: #2a2a2a;
             padding: 12px;
@@ -88,6 +105,12 @@
             color: #ffd700;
             font-weight: bold;
             letter-spacing: 1px;
+        }
+        .contact-box {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #444;
+            text-align: center;
         }
         ul { padding-left: 20px; margin: 5px 0; }
         li { margin-bottom: 5px; }
@@ -192,6 +215,12 @@
             <br>
 
             <button type="button" class="btn" onclick="sendOrder()">Buyurtmani Telegram orqali yuborish</button>
+            
+            <!-- Savollar va qo'shimcha ma'lumot uchun blok -->
+            <div class="contact-box">
+                <p style="margin-bottom: 8px; color: #ccc;">Qo'shimcha ma'lumot olish yoki savollaringiz bo'lsa:</p>
+                <a href="https://t.me/salihshomurodov" target="_blank" class="btn-tg">💬 Telegram orqali savol berish</a>
+            </div>
         </form>
     </div>
 
