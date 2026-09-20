@@ -268,7 +268,7 @@
             <div class="click-hint">🔍 Rasmlarni ko'rish</div>
         </div>
 
-        <!-- 2-Mahsulot (Bir nechta rasmlar bilan) -->
+        <!-- 2-Mahsulot -->
         <div class="product-card" onclick="openModal('Hashamatli Juftlik Soati - 180,000 so\'m', ['t_product_540_high.webp', 'feedback_40.webp', 'feedback_40 (1).webp'], '180,000 so\'m', 'Metall korpus, suvga chidamli, yuqori sifatli kvarts mexanizm. Juftliklar uchun eng sara tanlov.')">
             <img src="t_product_540_high.webp" alt="Hashamatli Juftlik Soati">
             <div class="product-title">Hashamatli Juftlik Soati</div>
@@ -284,10 +284,7 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             
-            <!-- Asosiy katta rasm -->
             <img id="modalMainImg" class="main-modal-img" src="" alt="Mahsulot rasmi">
-            
-            <!-- Kichik rasmlar (miniatyuralar) -->
             <div id="modalThumbnails" class="thumbnails-container"></div>
 
             <h3 id="modalTitle" style="color: #ffd700; margin: 10px 0 5px 0;"></h3>
@@ -311,7 +308,6 @@
 
         <form id="orderForm">
             
-            <!-- Mahsulotni tanlash bo'limi -->
             <div class="form-group">
                 <label for="product_select">Qaysi soatni buyurtma qilmoqchisiz?</label>
                 <select id="product_select" required>
@@ -399,10 +395,8 @@
             const thumbContainer = document.getElementById('modalThumbnails');
             thumbContainer.innerHTML = '';
 
-            // Asosiy rasmga birinchisini qo'yamiz
             mainImg.src = images[0];
 
-            // Miniatyuralarni yaratish
             images.forEach((imgSrc, index) => {
                 const thumb = document.createElement('img');
                 thumb.src = imgSrc;
@@ -479,7 +473,7 @@
             var product = document.getElementById('product_select').value;
             var name = document.getElementById('name').value;
             var phone = document.getElementById('phone').value;
-            var region = document.getElementById('region'].value;
+            var region = document.getElementById('region').value;
             var bts = document.getElementById('bts_branch').value;
 
             if(!product || !name || !phone || !region || !bts) {
