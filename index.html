@@ -280,20 +280,22 @@
 
     <!-- Mahsulotlar Katalogi -->
     <h2 style="color: #ffd700;">Bizning Soatlarimiz</h2>
-    <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil rasmlar va video ko'rish uchun soat ustiga bosing 👇</p>
+    <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil rasmlar va videolar ko'rish uchun soat ustiga bosing 👇</p>
     
     <div class="products-grid">
         
-        <!-- 1-Mahsulot (Video va Rasm bilan: 'video_2026.mp4' o'rniga o'zingiz yuklagan video nomini yozing) -->
+        <!-- 1-Mahsulot (1 ta rasm va 3 ta yangi video) -->
         <div class="product-card" onclick="openModal('HAMROH Juftlik Soati - 170,000 so\'m', [
             {type: 'image', src: 'photo_2026-09-20_13-16-03.jpg'},
-            {type: 'video', src: 'video_2026-09-20_13-16-03.mp4'}
+            {type: 'video', src: 'video_2026-09-20_13-20-21.mp4'},
+            {type: 'video', src: 'video_2026-09-20_13-20-24.mp4'},
+            {type: 'video', src: 'video_2026-09-20_13-20-27.mp4'}
         ], '170,000 so\'m', '2 ta soat + 2 ta bilaguzuk to\'plami. Silikon tasma, kvarts mexanizm, zamonaviy dizayn.')">
             <img src="photo_2026-09-20_13-16-03.jpg" alt="HAMROH Juftlik Soati">
             <div class="product-title">HAMROH Juftlik Soati</div>
             <div class="product-price">170,000 so'm</div>
             <p style="font-size: 13px; color: #aaa;">2 ta soat + 2 ta bilaguzuk to'plami...</p>
-            <div class="click-hint">🔍 Rasm va videoni ko'rish</div>
+            <div class="click-hint">🔍 Rasm va 3 ta videoni ko'rish</div>
         </div>
 
         <!-- 2-Mahsulot -->
@@ -316,11 +318,9 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             
-            <!-- Katta rasm va video maydoni -->
             <img id="modalMainImg" class="main-modal-img" src="" alt="Mahsulot rasmi">
             <video id="modalMainVideo" class="main-modal-video" controls></video>
             
-            <!-- Miniatyuralar -->
             <div id="modalThumbnails" class="thumbnails-container"></div>
 
             <h3 id="modalTitle" style="color: #ffd700; margin: 10px 0 5px 0;"></h3>
@@ -432,7 +432,6 @@
             const thumbContainer = document.getElementById('modalThumbnails');
             thumbContainer.innerHTML = '';
 
-            // Videoni to'xtatish (agar oldindan ochiq bo'lsa)
             mainVideo.pause();
 
             function showItem(item, thumbElement) {
@@ -449,11 +448,6 @@
                     mainVideo.style.display = 'block';
                     mainVideo.src = item.src;
                 }
-            }
-
-            // Birinchi elementni ochish
-            if (items.length > 0) {
-                // Vaqtinchalik birinchi element elementini yaratamiz
             }
 
             items.forEach((item, index) => {
@@ -482,7 +476,6 @@
                 thumbContainer.appendChild(thumb);
             });
 
-            // Dastlabkini ko'rsatish
             if(items[0].type === 'image') {
                 mainImg.style.display = 'block';
                 mainVideo.style.display = 'none';
@@ -527,7 +520,7 @@
             "Buxoro viloyati": ["Buxoro shahar BTS", "G'ijduvon BTS", "Kogon BTS", "Qorakul BTS", "Olot BTS", "Vobkent BTS", "Romiytan BTS", "Jondor BTS"],
             "Farg'ona viloyati": ["Farg'ona shahar BTS", "Qo'qon BTS", "Marg'ilon BTS", "Rishton BTS", "Oltiariq BTS", "Quvasoy BTS", "Beshariq BTS", "Toshloq BTS"],
             "Jizzax viloyati": ["Jizzax shahar BTS", "G'allaorol BTS", "Zomin BTS", "Paxtakor BTS", "Dostlik BTS", "Zarbdor BTS"],
-            "Namangan viloyati": ["Namangan shahar BTS", "Chust BTS", "Kosonsoy BTS", "Pop BTS", "Uychi BTS", "To'raqo'rg'on BTS", "Uchqo'rg'on BTS"],
+            "Namangan viloyati": ["Namangan shahar BTS", "Chust BTS", "Kosonsoy BTS", "Pop BTS", "Uychi BTS", "To'raqo'rg'ون BTS", "Uchqo'rg'on BTS"],
             "Navoiy viloyati": ["Navoiy shahar boshqarmasi", "Zarafshon BTS", "Uchquduq BTS", "Karmana BTS", "Nurota BTS", "Qiziltepa BTS"],
             "Qashqadaryo viloyati": ["Qarshi shahar BTS", "Shahrisabz BTS", "Kitob BTS", "Koson BTS", "G'uzor BTS", "Muborak BTS", "Yakkabog' BTS", "Kamashi BTS"],
             "Qoraqalpog'iston": ["Nukus shahar BTS", "To'rtko'l BTS", "Beruniy BTS", "Xo'jayli BTS", "Qo'ng'irot BTS", "Chimboy BTS", "Taqiatosh BTS"],
