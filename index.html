@@ -201,7 +201,6 @@
             border-radius: 8px;
             margin-bottom: 10px;
         }
-        /* Galereya kichik rasmlari va videolari */
         .modal-thumbnails {
             display: flex;
             justify-content: center;
@@ -270,12 +269,30 @@
     
     <div class="products-grid">
         
-        <!-- 1-Mahsulot: Yurakchali Bilaguzukli Juftlik Soati -->
+        <!-- 1-Mahsulot: Minimalist Klassik Juftlik Soati -->
+        <div class="product-card" onclick="openModal(
+            'Minimalist Klassik Juftlik Soati - 175,000 so\'m', 
+            [
+                {type: 'img', src: '6dc71847-a5f8-4c68-a475-ce046a3bbc82.png'}
+            ], 
+            '175,000 so\'m', 
+            `<b>To'plam tarkibi:</b> 2 ta o'ta zamonaviy va yengil minimalist dizayndagi qo'l soati.<br>
+             <b>Mexanizm:</b> Aniq va uzoq muddat xizmat qiluvchi kvarts mexanizmi.<br>
+             <b>Tasma:</b> Yuqori sifatli jigarrang charm tasma.<br>
+             <b>Afzalliklari:</b> Klassik va zamonaviy uslubni uyg'unlashtirgan bo'lib, har qanday kiyim va kundalik obrazingizga mukammal mos keladi.`
+        )">
+            <img src="6dc71847-a5f8-4c68-a475-ce046a3bbc82.png" alt="Minimalist Klassik Juftlik Soati">
+            <div class="product-title">Minimalist Klassik Juftlik Soati</div>
+            <div class="product-price">175,000 so'm</div>
+            <p style="font-size: 13px; color: #aaa;">Jigarrang charm tasma, minimalist dizayn...</p>
+            <div class="click-hint">🔍 Batafsil ko'rish</div>
+        </div>
+
+        <!-- 2-Mahsulot: Yurakchali Bilaguzukli Juftlik Soati -->
         <div class="product-card" onclick="openModal(
             'Yurakchali Bilaguzukli Juftlik Soati - 250,000 so\'m', 
             [
-                {type: 'img', src: 't_product_540_high.webp'},
-                {type: 'img', src: '6dc71847-a5f8-4c68-a475-ce046a3bbc82.png'}
+                {type: 'img', src: 't_product_540_high.webp'}
             ], 
             '250,000 so\'m', 
             `<b>To'plam tarkibi:</b> 2 ta premium qo'l soati va 2 ta nafis yurakchali bilaguzuk.<br>
@@ -286,11 +303,30 @@
             <img src="t_product_540_high.webp" alt="Yurakchali Bilaguzukli Juftlik Soati">
             <div class="product-title">Yurakchali Bilaguzukli Juftlik Soati</div>
             <div class="product-price">250,000 so'm</div>
-            <p style="font-size: 13px; color: #aaa;">2 ta premium soat + 2 ta yurakchali bilaguzuk...</p>
+            <p style="font-size: 13px; color: #aaa;">2 ta soat va 2 ta yurakchali bilaguzuk...</p>
             <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
-        <!-- 2-Mahsulot: HAMROH Juftlik Soati -->
+        <!-- 3-Mahsulot (feedback rasmlari bilan) -->
+        <div class="product-card" onclick="openModal(
+            'Maxsus Juftlik Soati - 170,000 so\'m', 
+            [
+                {type: 'img', src: 'feedback_40.webp'},
+                {type: 'img', src: 'feedback_40 (1).webp'}
+            ], 
+            '170,000 so\'m', 
+            `<b>To'plam tarkibi:</b> Sifatli juftlik soatlari va mijozlarimizdan ijobiy fikrlar (feedback).<br>
+             <b>Mexanizm:</b> Chidamli va aniq ishlaydigan kvarts mexanizm.<br>
+             <b>Afzalliklari:</b> Kundalik taqish uchun juda qulay, zamonaviy va jozibali ko'rinishga ega.`
+        )">
+            <img src="feedback_40.webp" alt="Maxsus Juftlik Soati">
+            <div class="product-title">Maxsus Juftlik Soati</div>
+            <div class="product-price">170,000 so'm</div>
+            <p style="font-size: 13px; color: #aaa;">Mijozlarimizdan haqiqiy rasmlar va sharhlar...</p>
+            <div class="click-hint">🔍 Batafsil ko'rish</div>
+        </div>
+
+        <!-- 4-Mahsulot: HAMROH Juftlik Soati -->
         <div class="product-card" onclick="openModal(
             'HAMROH Juftlik Soati - 170,000 so\'m', 
             [
@@ -311,50 +347,9 @@
             <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
-        <!-- 3-Mahsulot: Minimalist Klassik Juftlik Soati -->
-        <div class="product-card" onclick="openModal(
-            'Minimalist Klassik Juftlik Soati - 175,000 so\'m', 
-            [
-                {type: 'img', src: 'feedback_40.webp'},
-                {type: 'img', src: 'feedback_40 (1).webp'}
-            ], 
-            '175,000 so\'m', 
-            `<b>To'plam tarkibi:</b> 2 ta o'ta zamonaviy va yengil minimalist dizayndagi qo'l soati.<br>
-             <b>Mexanizm:</b> Aniq va uzoq muddat xizmat qiluvchi kvarts mexanizmi.<br>
-             <b>Tasma:</b> Yuqori sifatli jigarrang charm tasma.<br>
-             <b>Afzalliklari:</b> Klassik va zamonaviy uslubni uyg'unlashtirgan bo'lib, har qanday kiyim va kundalik obrazingizga mukammal mos keladi.`
-        )">
-            <img src="feedback_40.webp" alt="Minimalist Klassik Juftlik Soati">
-            <div class="product-title">Minimalist Klassik Juftlik Soati</div>
-            <div class="product-price">175,000 so'm</div>
-            <p style="font-size: 13px; color: #aaa;">Jigarrang charm tasma, mijozlar fikrlari...</p>
-            <div class="click-hint">🔍 Batafsil ko'rish</div>
-        </div>
-
-        <!-- 4-Mahsulot: Hashamatli Juftlik Soati -->
-        <div class="product-card" onclick="openModal(
-            'Hashamatli Juftlik Soati - 250,000 so\'m', 
-            [
-                {type: 'img', src: '6dc71847-a5f8-4c68-a475-ce046a3bbc82.png'},
-                {type: 'img', src: 't_product_540_high.webp'}
-            ], 
-            '250,000 so\'m', 
-            `<b>To'plam tarkibi:</b> 2 ta premium klassdagi hashamatli juftlik soati va maxsus sovg'a qutisi.<br>
-             <b>Mexanizm:</b> Ishonchli, yuqori aniqlikdagi kvarts mexanizm.<br>
-             <b>Material:</b> Mustahkam zanglamaydigan po'latdan yasalgan jozibali korpus va sifatli charm lentalar.<br>
-             <b>Himoya:</b> Kundalik hayotda suv sachrashi va namlikdan to'liq himoyalangan.<br>
-             <b>Afzalliklari:</b> Klassik va dabdabali ko'rinishga ega bo'lib, sevgan insoningiz uchun eng unutilmas va qadrli sovg'a bo'la oladi!`
-        )">
-            <img src="6dc71847-a5f8-4c68-a475-ce046a3bbc82.png" alt="Hashamatli Juftlik Soati">
-            <div class="product-title">Hashamatli Juftlik Soati</div>
-            <div class="product-price">250,000 so'm</div>
-            <p style="font-size: 13px; color: #aaa;">Premium klass, oq siferblat va charm tasma...</p>
-            <div class="click-hint">🔍 Batafsil ko'rish</div>
-        </div>
-
     </div>
 
-    <!-- Mahsulot uchun Modal Oyna (Media galereyasi bilan) -->
+    <!-- Mahsulot uchun Modal Oyna -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -364,7 +359,6 @@
                 <video id="modalMainVideo" class="main-modal-media" src="" controls style="display: none;"></video>
             </div>
             
-            <!-- Galereya uchun kichik rasmlar va videolar -->
             <div id="modalThumbnails" class="modal-thumbnails"></div>
 
             <h3 id="modalTitle" style="color: #ffd700; margin: 10px 0 5px 0;"></h3>
@@ -393,10 +387,10 @@
                 <label for="product_select">Qaysi soatni buyurtma qilmoqchisiz?</label>
                 <select id="product_select" required>
                     <option value="">-- Soatni tanlang --</option>
-                    <option value="Yurakchali Bilaguzukli Juftlik Soati - 250,000 so'm">Yurakchali Bilaguzukli Juftlik Soati (250,000 so'm)</option>
-                    <option value="HAMROH Juftlik Soati - 170,000 so'm">HAMROH Juftlik Soati (170,000 so'm)</option>
                     <option value="Minimalist Klassik Juftlik Soati - 175,000 so'm">Minimalist Klassik Juftlik Soati (175,000 so'm)</option>
-                    <option value="Hashamatli Juftlik Soati - 250,000 so'm">Hashamatli Juftlik Soati (250,000 so'm)</option>
+                    <option value="Yurakchali Bilaguzukli Juftlik Soati - 250,000 so'm">Yurakchali Bilaguzukli Juftlik Soati (250,000 so'm)</option>
+                    <option value="Maxsus Juftlik Soati - 170,000 so'm">Maxsus Juftlik Soati (170,000 so'm)</option>
+                    <option value="HAMROH Juftlik Soati - 170,000 so'm">HAMROH Juftlik Soati (170,000 so'm)</option>
                 </select>
             </div>
 
@@ -491,10 +485,8 @@
             document.getElementById('modalPrice').textContent = price;
             document.getElementById('modalDesc').innerHTML = descHtml;
             
-            // Birinchi media elementini ko'rsatish
             showMedia(mediaList[0]);
 
-            // Galereya uchun kichik elementlarni yaratish
             const thumbContainer = document.getElementById('modalThumbnails');
             thumbContainer.innerHTML = '';
             
