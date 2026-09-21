@@ -38,7 +38,7 @@
             background-color: #1e1e1e;
             border: 1px solid #333;
             border-radius: 12px;
-            width: 280px;
+            width: 260px;
             padding: 15px;
             text-align: center;
             box-sizing: border-box;
@@ -51,18 +51,18 @@
         }
         .product-card img {
             width: 100%;
-            height: 300px;
+            height: 260px;
             object-fit: cover;
             border-radius: 8px;
         }
         .product-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             color: #ffd700;
             margin: 10px 0 5px 0;
         }
         .product-price {
-            font-size: 18px;
+            font-size: 17px;
             color: #28a745;
             font-weight: bold;
             margin-bottom: 10px;
@@ -196,11 +196,31 @@
         }
         .main-modal-img {
             width: 100%;
-            height: 300px;
+            height: 280px;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 10px;
         }
+        /* Galereya kichik rasmlari */
+        .modal-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .modal-thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid #444;
+            transition: border-color 0.2s;
+        }
+        .modal-thumb:hover, .modal-thumb.active {
+            border-color: #ffd700;
+        }
+
         .close-btn {
             color: #aaa;
             position: absolute;
@@ -243,19 +263,39 @@
     <p class="subtitle">Eng sifatli va go'zal soatlar to'plami</p>
     <div class="delivery-badge">🚚 O'zbekiston bo'ylab BTS orqali 3 kun ichida yetkazib beramiz va yetkazib berish BEPUL!</div>
 
-    <!-- Mahsulotlar Katalogi -->
+    <!-- Mahsulotlar Katalogi (Jami 4 ta soat) -->
     <h2 style="color: #ffd700;">Bizning Soatlarimiz</h2>
-    <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil ma'lumot va rasmni ko'rish uchun soat ustiga bosing 👇</p>
+    <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil ma'lumot va rasmlarni ko'rish uchun soat ustiga bosing 👇</p>
     
     <div class="products-grid">
         
-        <!-- 1-Mahsulot: HAMROH Juftlik Soati -->
-        <div class="product-card" onclick="openModal('HAMROH Juftlik Soati - 170,000 so\'m', 'photo_2026-09-20_13-16-03.jpg', '170,000 so\'m', `
-            <b>To'plam tarkibi:</b> 2 ta qulay qo'l soati va 2 ta zamonaviy magnitli bilaguzuk.<br>
-            <b>Mexanizm:</b> Yuqori aniqlikdagi Yaponiya kvarts mexanizmi.<br>
-            <b>Tasma materiali:</b> Yumshoq, pishiq va hipoalerjenik silikon.<br>
-            <b>Afzalliklari:</b> Kundalik foydalanish uchun juda qulay, suv sachrashidan himoyalangan va yaqinlaringiz uchun mukammal sovg'a tanlovi!
-        `)">
+        <!-- 1-Mahsulot: Yurakchali Bilaguzukli Juftlik Soati -->
+        <div class="product-card" onclick="openModal(
+            'Yurakchali Bilaguzukli Juftlik Soati - 250,000 so\'m', 
+            ['image_4b5365.png', 't_product_540_high.webp', 'photo_2026-09-20_13-16-03.jpg'], 
+            '250,000 so\'m', 
+            `<b>To'plam tarkibi:</b> 2 ta premium qo'l soati va 2 ta nafis yurakchali bilaguzuk.<br>
+             <b>Mexanizm:</b> Sifatli kvarts mexanizmi.<br>
+             <b>Dizayn:</b> Rim raqamli siferblat, qora va oq charm lentalar, har qanday ko'rinishga o'zgacha joziba bag'ishlaydi.<br>
+             <b>Sovg'a uchun:</b> Juftliklar va yaqinlar uchun eng sara sovg'a tanlovi!`
+        )">
+            <img src="image_4b5365.png" alt="Yurakchali Bilaguzukli Juftlik Soati">
+            <div class="product-title">Yurakchali Bilaguzukli Juftlik Soati</div>
+            <div class="product-price">250,000 so'm</div>
+            <p style="font-size: 13px; color: #aaa;">Juftlik soat + yurakchali bilaguzuklar...</p>
+            <div class="click-hint">🔍 Batafsil ko'rish</div>
+        </div>
+
+        <!-- 2-Mahsulot: HAMROH Juftlik Soati -->
+        <div class="product-card" onclick="openModal(
+            'HAMROH Juftlik Soati - 170,000 so\'m', 
+            ['photo_2026-09-20_13-16-03.jpg', '6dc71847-a5f8-4c68-a475-ce046a3bbc82.png', 'image_4b5365.png'], 
+            '170,000 so\'m', 
+            `<b>To'plam tarkibi:</b> 2 ta qulay qo'l soati + 2 ta zamonaviy magnitli bilaguzuk.<br>
+             <b>Mexanizm:</b> Yuqori aniqlikdagi Yaponiya kvarts mexanizmi.<br>
+             <b>Tasma materiali:</b> Yumshoq, pishiq va hipoalerjenik silikon.<br>
+             <b>Dizayn va xususiyatlari:</b> Zamonaviy, qora va oq rangdagi elegant ko'rinish. Kundalik foydalanish va sovg'a uchun mukammal tanlov!`
+        )">
             <img src="photo_2026-09-20_13-16-03.jpg" alt="HAMROH Juftlik Soati">
             <div class="product-title">HAMROH Juftlik Soati</div>
             <div class="product-price">170,000 so'm</div>
@@ -263,14 +303,17 @@
             <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
-        <!-- 2-Mahsulot: Hashamatli Juftlik Soati (Narxi 250,000 so'm qilindi) -->
-        <div class="product-card" onclick="openModal('Hashamatli Juftlik Soati - 250,000 so\'m', 't_product_540_high.webp', '250,000 so\'m', `
-            <b>To'plam tarkibi:</b> 2 ta premium klassdagi hashamatli juftlik soati va maxsus sovg'a qutisi.<br>
-            <b>Mexanizm:</b> Ishonchli, yuqori aniqlikdagi kvarts mexanizm.<br>
-            <b>Material:</b> Mustahkam zanglamaydigan po'latdan yasalgan jozibali korpus va sifatli charm lentalar.<br>
-            <b>Himoya:</b> Kundalik hayotda suv sachrashi va namlikdan to'liq himoyalangan.<br>
-            <b>Afzalliklari:</b> Klassik va dabdabali ko'rinishga ega bo'lib, sevgan insoningiz uchun eng unutilmas va qadrli sovg'a bo'la oladi!
-        `)">
+        <!-- 3-Mahsulot: Hashamatli Juftlik Soati (Narxi 250,000 so'm qilindi) -->
+        <div class="product-card" onclick="openModal(
+            'Hashamatli Juftlik Soati - 250,000 so\'m', 
+            ['t_product_540_high.webp', 'image_4b5365.png', '6dc71847-a5f8-4c68-a475-ce046a3bbc82.png'], 
+            '250,000 so\'m', 
+            `<b>To'plam tarkibi:</b> 2 ta premium klassdagi hashamatli juftlik soati va maxsus sovg'a qutisi.<br>
+             <b>Mexanizm:</b> Ishonchli, yuqori aniqlikdagi kvarts mexanizm.<br>
+             <b>Material:</b> Mustahkam zanglamaydigan po'latdan yasalgan jozibali korpus va sifatli charm lentalar.<br>
+             <b>Himoya:</b> Kundalik hayotda suv sachrashi va namlikdan to'liq himoyalangan.<br>
+             <b>Afzalliklari:</b> Klassik va dabdabali ko'rinishga ega bo'lib, sevgan insoningiz uchun eng unutilmas va qadrli sovg'a bo'la oladi!`
+        )">
             <img src="t_product_540_high.webp" alt="Hashamatli Juftlik Soati">
             <div class="product-title">Hashamatli Juftlik Soati</div>
             <div class="product-price">250,000 so'm</div>
@@ -278,13 +321,16 @@
             <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
-        <!-- 3-Mahsulot: Minimalist Klassik Juftlik Soati -->
-        <div class="product-card" onclick="openModal('Minimalist Klassik Juftlik Soati - 175,000 so\'m', '6dc71847-a5f8-4c68-a475-ce046a3bbc82.png', '175,000 so\'m', `
-            <b>To'plam tarkibi:</b> 2 ta o'ta zamonaviy va yengil minimalist dizayndagi qo'l soati.<br>
-            <b>Mexanizm:</b> Aniq va uzoq muddat xizmat qiluvchi kvarts mexanizmi.<br>
-            <b>Tasma:</b> Yuqori sifatli jigarrang charm tasma.<br>
-            <b>Afzalliklari:</b> Klassik va zamonaviy uslubni uyg'unlashtirgan bo'lib, har qanday kiyim va kundalik obrazingizga mukammal mos keladi.
-        `)">
+        <!-- 4-Mahsulot: Minimalist Klassik Juftlik Soati -->
+        <div class="product-card" onclick="openModal(
+            'Minimalist Klassik Juftlik Soati - 175,000 so\'m', 
+            ['6dc71847-a5f8-4c68-a475-ce046a3bbc82.png', 'photo_2026-09-20_13-16-03.jpg', 't_product_540_high.webp'], 
+            '175,000 so\'m', 
+            `<b>To'plam tarkibi:</b> 2 ta o'ta zamonaviy va yengil minimalist dizayndagi qo'l soati.<br>
+             <b>Mexanizm:</b> Aniq va uzoq muddat xizmat qiluvchi kvarts mexanizmi.<br>
+             <b>Tasma:</b> Yuqori sifatli jigarrang charm tasma.<br>
+             <b>Afzalliklari:</b> Klassik va zamonaviy uslubni uyg'unlashtirgan bo'lib, har qanday kiyim va kundalik obrazingizga mukammal mos keladi.`
+        )">
             <img src="6dc71847-a5f8-4c68-a475-ce046a3bbc82.png" alt="Minimalist Klassik Juftlik Soati">
             <div class="product-title">Minimalist Klassik Juftlik Soati</div>
             <div class="product-price">175,000 so'm</div>
@@ -294,12 +340,15 @@
 
     </div>
 
-    <!-- Mahsulot uchun Modal Oyna -->
+    <!-- Mahsulot uchun Modal Oyna (Galereyasi bilan) -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             
             <img id="modalMainImg" class="main-modal-img" src="" alt="Mahsulot rasmi">
+            
+            <!-- Bir nechta kichik rasmlar (Galereya) -->
+            <div id="modalThumbnails" class="modal-thumbnails"></div>
 
             <h3 id="modalTitle" style="color: #ffd700; margin: 10px 0 5px 0;"></h3>
             <div id="modalPrice" style="color: #28a745; font-size: 20px; font-weight: bold; margin-bottom: 8px;"></div>
@@ -327,6 +376,7 @@
                 <label for="product_select">Qaysi soatni buyurtma qilmoqchisiz?</label>
                 <select id="product_select" required>
                     <option value="">-- Soatni tanlang --</option>
+                    <option value="Yurakchali Bilaguzukli Juftlik Soati - 250,000 so'm">Yurakchali Bilaguzukli Juftlik Soati (250,000 so'm)</option>
                     <option value="HAMROH Juftlik Soati - 170,000 so'm">HAMROH Juftlik Soati (170,000 so'm)</option>
                     <option value="Hashamatli Juftlik Soati - 250,000 so'm">Hashamatli Juftlik Soati (250,000 so'm)</option>
                     <option value="Minimalist Klassik Juftlik Soati - 175,000 so'm">Minimalist Klassik Juftlik Soati (175,000 so'm)</option>
@@ -372,8 +422,8 @@
             </div>
 
             <div class="payment-info">
-                💳 <strong>To'lov uchun karta raqamlari:</strong><br>
-                Egasining ismi: <strong>Eshimatova Barno</strong>
+                💳 <b>To'lov uchun karta raqamlari:</b><br>
+                Egasining ismi: <b>Eshimatova Barno</b>
                 
                 <div class="card-box">
                     🔹 <b>Uzcard / Humo (Oddiy karta):</b><br>
@@ -401,12 +451,30 @@
     <script>
         let selectedProductName = "";
 
-        function openModal(title, imageSrc, price, descHtml) {
+        function openModal(title, images, price, descHtml) {
             selectedProductName = title;
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalPrice').textContent = price;
             document.getElementById('modalDesc').innerHTML = descHtml;
-            document.getElementById('modalMainImg').src = imageSrc;
+            
+            // Asosiy rasmga birinchi rasmni qo'yamiz
+            document.getElementById('modalMainImg').src = images[0];
+
+            // Galereya uchun kichik rasmlarni yaratish
+            const thumbContainer = document.getElementById('modalThumbnails');
+            thumbContainer.innerHTML = '';
+            
+            images.forEach((imgSrc, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgSrc;
+                thumb.className = 'modal-thumb' + (index === 0 ? ' active' : '');
+                thumb.onclick = function() {
+                    document.getElementById('modalMainImg').src = imgSrc;
+                    document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                };
+                thumbContainer.appendChild(thumb);
+            });
 
             document.getElementById('productModal').style.display = 'flex';
         }
