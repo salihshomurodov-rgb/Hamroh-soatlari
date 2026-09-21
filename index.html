@@ -288,13 +288,13 @@
             <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
-        <!-- 2-Mahsulot (250 minglik - 11.jpg va 22.jpg rasmlari bilan) -->
+        <!-- 2-Mahsulot (1.jpg va 2.jpg rasmlari bilan) -->
         <div class="product-card" onclick="openModal(
             'Yurakchali Bilaguzukli Juftlik Soati - 250,000 so\'m', 
             [
                 {type: 'img', src: 't_product_540_high.webp'},
-                {type: 'img', src: '11.jpg'},
-                {type: 'img', src: '22.jpg'}
+                {type: 'img', src: '1.jpg'},
+                {type: 'img', src: '2.jpg'}
             ], 
             '250,000 so\'m', 
             `<b>To'plam tarkibi:</b> 2 ta premium qo'l soati va 2 ta nafis yurakchali bilaguzuk.<br>
@@ -575,7 +575,7 @@
             var product = document.getElementById('product_select').value;
             var name = document.getElementById('name').value;
             var phone = document.getElementById('phone').value;
-            var region = document.getElementById('region'].value;
+            var region = document.getElementById('region').value;
             var bts = document.getElementById('bts_branch').value;
 
             if(!product || !name || !phone || !region || !bts) {
