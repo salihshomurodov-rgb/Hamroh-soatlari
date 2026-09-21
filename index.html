@@ -1,636 +1,1237 @@
 <!DOCTYPE html>
+
 <html lang="uz">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>HAMROH soatlar online do'koni</title>
+
     <style>
+
         body {
+
             font-family: Arial, sans-serif;
+
             background-color: #121212;
+
             color: #ffffff;
+
             margin: 0;
+
             padding: 20px;
+
             text-align: center;
+
         }
+
         h1 { color: #ffd700; margin-bottom: 5px; }
+
         p.subtitle { color: #ccc; margin-top: 0; }
+
         .delivery-badge {
+
             background-color: #28a745;
+
             color: white;
+
             padding: 8px 16px;
+
             border-radius: 20px;
+
             font-size: 15px;
+
             font-weight: bold;
+
             display: inline-block;
+
             margin-bottom: 25px;
+
         }
+
         
+
         /* Mahsulotlar katalogi */
+
         .products-grid {
+
             display: flex;
+
             flex-wrap: wrap;
+
             justify-content: center;
+
             gap: 20px;
+
             margin-bottom: 30px;
+
         }
+
         .product-card {
+
             background-color: #1e1e1e;
+
             border: 1px solid #333;
+
             border-radius: 12px;
+
             width: 280px;
+
             padding: 15px;
+
             text-align: center;
+
             box-sizing: border-box;
+
             cursor: pointer;
+
             transition: transform 0.2s, border-color 0.2s;
+
         }
+
         .product-card:hover {
+
             transform: translateY(-5px);
+
             border-color: #ffd700;
+
         }
+
         .product-card img {
+
             width: 100%;
+
             height: 300px;
+
             object-fit: cover;
+
             border-radius: 8px;
+
         }
+
         .product-title {
+
             font-size: 18px;
+
             font-weight: bold;
+
             color: #ffd700;
+
             margin: 10px 0 5px 0;
+
         }
+
         .product-price {
+
             font-size: 18px;
+
             color: #28a745;
+
             font-weight: bold;
+
             margin-bottom: 10px;
+
         }
+
         .click-hint {
+
             font-size: 12px;
+
             color: #0088cc;
+
             margin-top: 5px;
+
             font-weight: bold;
+
         }
+
+
 
         .info-card {
+
             background-color: #1e1e1e;
+
             max-width: 500px;
+
             margin: 0 auto 30px auto;
+
             padding: 20px;
+
             border-radius: 12px;
+
             border: 1px solid #333;
+
             text-align: left;
+
         }
+
         .info-card h2 {
+
             color: #ffd700;
+
             margin-top: 0;
+
             border-bottom: 1px solid #333;
+
             padding-bottom: 10px;
+
         }
+
         .form-group { margin-bottom: 15px; text-align: left; }
+
         .form-group label { display: block; margin-bottom: 5px; color: #ddd; }
+
         .form-group input, .form-group textarea, .form-group select {
+
             width: 100%;
+
             padding: 10px;
+
             border-radius: 6px;
+
             border: 1px solid #444;
+
             background-color: #2a2a2a;
+
             color: #fff;
+
             box-sizing: border-box;
+
         }
+
         .btn {
+
             background-color: #28a745;
+
             color: white;
+
             padding: 14px 28px;
+
             font-size: 18px;
+
             border: none;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             width: 100%;
+
             font-weight: bold;
+
         }
+
         .btn:hover { background-color: #218838; }
+
         .btn-tg {
+
             background-color: #0088cc;
+
             color: white;
+
             padding: 12px 24px;
+
             font-size: 16px;
+
             border: none;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             width: 100%;
+
             font-weight: bold;
+
             margin-top: 10px;
+
             display: inline-block;
+
             text-decoration: none;
+
             box-sizing: border-box;
+
             text-align: center;
+
         }
+
         .btn-tg:hover { background-color: #0077b5; }
+
         .payment-info {
+
             background-color: #2a2a2a;
+
             padding: 12px;
+
             border-radius: 6px;
+
             margin-top: 10px;
+
             font-size: 14px;
+
             line-height: 1.6;
+
         }
+
         .card-box {
+
             background-color: #1e1e1e;
+
             padding: 10px;
+
             border-radius: 6px;
+
             margin-top: 8px;
+
             border: 1px solid #444;
+
         }
+
         .card-number {
+
             font-size: 17px;
+
             color: #ffd700;
+
             font-weight: bold;
+
             letter-spacing: 1px;
+
         }
+
         .contact-box {
+
             margin-top: 15px;
+
             padding-top: 15px;
+
             border-top: 1px dashed #444;
+
             text-align: center;
+
         }
+
         .success-message {
+
             display: none;
+
             background-color: #155724;
+
             color: #d4edda;
+
             border: 1px solid #c3e6cb;
+
             padding: 15px;
+
             border-radius: 8px;
+
             margin-bottom: 20px;
+
             font-size: 16px;
+
             font-weight: bold;
+
             text-align: center;
+
         }
+
+
 
         /* Modal oyna dizayni va Galereya */
+
         .modal {
+
             display: none;
+
             position: fixed;
+
             z-index: 1000;
+
             left: 0;
+
             top: 0;
+
             width: 100%;
+
             height: 100%;
+
             background-color: rgba(0,0,0,0.85);
+
             justify-content: center;
+
             align-items: center;
+
         }
+
         .modal-content {
+
             background-color: #1e1e1e;
+
             padding: 20px;
+
             border-radius: 12px;
+
             max-width: 450px;
+
             width: 90%;
+
             text-align: center;
+
             border: 1px solid #ffd700;
+
             position: relative;
+
             max-height: 90vh;
+
             overflow-y: auto;
+
         }
+
         .main-modal-img, .main-modal-video {
+
             width: 100%;
+
             height: 300px;
+
             object-fit: cover;
+
             border-radius: 8px;
+
             margin-bottom: 10px;
+
             display: none;
+
         }
+
         .main-modal-img.active, .main-modal-video.active {
+
             display: block;
+
         }
+
         .thumbnails-container {
+
             display: flex;
+
             justify-content: center;
+
             gap: 8px;
+
             margin-bottom: 15px;
+
             flex-wrap: wrap;
+
         }
+
         .thumb-item {
+
             width: 60px;
+
             height: 60px;
+
             object-fit: cover;
+
             border-radius: 6px;
+
             cursor: pointer;
+
             border: 2px solid #444;
+
             transition: border-color 0.2s;
+
             position: relative;
+
             background-color: #000;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
         }
+
         .thumb-item img, .thumb-item video {
+
             width: 100%;
+
             height: 100%;
+
             object-fit: cover;
+
             border-radius: 4px;
+
         }
+
         .thumb-item:hover, .thumb-item.active {
+
             border-color: #ffd700;
+
         }
+
         .video-indicator {
+
             position: absolute;
+
             font-size: 16px;
+
             color: #fff;
+
             background: rgba(0,0,0,0.6);
+
             border-radius: 50%;
+
             width: 24px;
+
             height: 24px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
         }
+
         .close-btn {
+
             color: #aaa;
+
             position: absolute;
+
             right: 15px;
+
             top: 10px;
+
             font-size: 28px;
+
             font-weight: bold;
+
             cursor: pointer;
+
         }
+
         .close-btn:hover { color: #fff; }
+
         .modal-btn {
+
             background-color: #ffd700;
+
             color: #121212;
+
             padding: 10px 20px;
+
             font-size: 16px;
+
             font-weight: bold;
+
             border: none;
+
             border-radius: 6px;
+
             cursor: pointer;
+
             margin-top: 10px;
+
             width: 100%;
+
         }
+
         .modal-btn:hover { background-color: #e6c200; }
+
         
+
         .modal-desc-box {
+
             text-align: left;
+
             background: #252525;
+
             padding: 12px;
+
             border-radius: 8px;
+
             margin-bottom: 15px;
+
             font-size: 14px;
+
             line-height: 1.6;
+
             color: #ddd;
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <h1>HAMROH soatlar online do'koni</h1>
+
     <p class="subtitle">Eng sifatli va go'zal soatlar to'plami</p>
+
     <div class="delivery-badge">🚚 O'zbekiston bo'ylab BTS orqali 3 kun ichida yetkazib beramiz va yetkazib berish BEPUL!</div>
 
+
+
     <!-- Mahsulotlar Katalogi -->
+
     <h2 style="color: #ffd700;">Bizning Soatlarimiz</h2>
+
     <p style="color: #aaa; font-size: 14px; margin-top: -10px;">Batafsil ma'lumot, rasmlar va videolarni ko'rish uchun soat ustiga bosing 👇</p>
+
     
+
     <div class="products-grid">
+
         
-        <!-- 1-Mahsulot (Yurakchali Bilaguzukli Juftlik Soati) -->
-        <div class="product-card" onclick="openModal('Yurakchali Bilaguzukli Juftlik Soati - 250,000 so\'m', [
-            {type: 'image', src: 'image_4b5365.png'}
-        ], '250,000 so\'m', `
-            <b>To'plam tarkibi:</b> 2 ta premium qo'l soati va 2 ta nafis yurakchali bilaguzuk[cite: 6].<br>
-            <b>Mexanizm:</b> Sifatli kvarts mexanizmi.<br>
-            <b>Dizayn:</b> Rim raqamli siferblat, qora va oq charm lentalar, har qanday ko'rinishga o'zgacha joziba bag'ishlaydi[cite: 6].<br>
-            <b>Sovg'a uchun:</b> Juftliklar va yaqinlar uchun eng sara sovg'a tanlovi!
-        `)">
-            <img src="image_4b5365.png" alt="Yurakchali Bilaguzukli Juftlik Soati">
-            <div class="product-title">Yurakchali Bilaguzukli Juftlik Soati</div>
-            <div class="product-price">250,000 so'm</div>
-            <p style="font-size: 13px; color: #aaa;">Juftlik soat + yurakchali bilaguzuklar...</p>
-            <div class="click-hint">🔍 Batafsil ko'rish</div>
-        </div>
 
-        <!-- 2-Mahsulot (HAMROH Juftlik Soati) -->
+        <!-- 1-Mahsulot (HAMROH Juftlik Soati) -->
+
         <div class="product-card" onclick="openModal('HAMROH Juftlik Soati - 170,000 so\'m', [
+
             {type: 'image', src: 'photo_2026-09-20_13-16-03.jpg'},
+
             {type: 'video', src: 'video_2026-09-20_13-20-21.mp4'},
+
             {type: 'video', src: 'video_2026-09-20_13-20-24.mp4'},
+
             {type: 'video', src: 'video_2026-09-20_13-20-27.mp4'}
+
         ], '170,000 so\'m', `
+
             <b>To'plam tarkibi:</b> 2 ta qulay qo'l soati + 2 ta zamonaviy magnitli bilaguzuk.<br>
+
             <b>Mexanizm:</b> Yuqori aniqlikdagi Yaponiya kvarts mexanizmi.<br>
+
             <b>Tasma materiali:</b> Yumshoq, pishiq va hipoalerjenik silikon.<br>
+
             <b>Dizayn va xususiyatlari:</b> Zamonaviy, qora va oq rangdagi elegant ko'rinish. Kundalik foydalanish va sovg'a uchun mukammal tanlov!
+
         `)">
+
             <img src="photo_2026-09-20_13-16-03.jpg" alt="HAMROH Juftlik Soati">
+
             <div class="product-title">HAMROH Juftlik Soati</div>
+
             <div class="product-price">170,000 so'm</div>
+
             <p style="font-size: 13px; color: #aaa;">2 ta soat + 2 ta bilaguzuk to'plami...</p>
+
             <div class="click-hint">🔍 Batafsil ko'rish</div>
+
         </div>
 
-        <!-- 3-Mahsulot (Hashamatli Juftlik Soati) -->
+
+
+        <!-- 2-Mahsulot (Hashamatli Juftlik Soati) -->
+
         <div class="product-card" onclick="openModal('Hashamatli Juftlik Soati - 180,000 so\'m', [
+
             {type: 'image', src: 't_product_540_high.webp'},
+
             {type: 'image', src: 'feedback_40.webp'},
+
             {type: 'image', src: 'feedback_40 (1).webp'}
+
         ], '180,000 so\'m', `
+
             <b>To'plam tarkibi:</b> 2 ta premium klassdagi juftlik soati.<br>
+
             <b>Mexanizm:</b> Ishonchli va bardoshli kvarts mexanizm.<br>
+
             <b>Material:</b> Mustahkam zanglamaydigan po'latdan yasalgan korpus.<br>
+
             <b>Himoya:</b> Suv sachrashi va namlikdan himoyalangan.<br>
+
             <b>Afzalliklari:</b> Klassik va dabdabali ko'rinish, sevgan insoningiz uchun eng esda qolarli sovg'a!
+
         `)">
+
             <img src="t_product_540_high.webp" alt="Hashamatli Juftlik Soati">
+
             <div class="product-title">Hashamatli Juftlik Soati</div>
+
             <div class="product-price">180,000 so'm</div>
+
             <p style="font-size: 13px; color: #aaa;">Metall korpus, suvga chidamli...</p>
+
             <div class="click-hint">🔍 Batafsil ko'rish</div>
+
         </div>
 
-        <!-- 4-Mahsulot (Minimalist Klassik Juftlik Soati) -->
+
+
+        <!-- 3-Mahsulot (Minimalist Klassik Juftlik Soati) -->
+
         <div class="product-card" onclick="openModal('Minimalist Klassik Juftlik Soati - 175,000 so\'m', [
+
             {type: 'image', src: '6dc71847-a5f8-4c68-a475-ce046a3bbc82.png'}
+
         ], '175,000 so\'m', `
+
             <b>To'plam tarkibi:</b> 2 ta zamonaviy minimalist dizayndagi qo'l soati.<br>
+
             <b>Mexanizm:</b> Aniq va ishonchli kvarts mexanizmi.<br>
+
             <b>Tasma:</b> Yuqori sifatli jigarrang charm tasma.<br>
+
             <b>Dizayn:</b> Och rangli studiya fonida suratga olingan, har qanday kiyim uslubiga mos keladigan nafis va yengil ko'rinish.
+
         `)">
+
             <img src="6dc71847-a5f8-4c68-a475-ce046a3bbc82.png" alt="Minimalist Klassik Juftlik Soati">
+
             <div class="product-title">Minimalist Klassik Juftlik Soati</div>
+
             <div class="product-price">175,000 so'm</div>
+
             <p style="font-size: 13px; color: #aaa;">Jigarrang charm tasma, oq siferblat...</p>
+
             <div class="click-hint">🔍 Batafsil ko'rish</div>
+
         </div>
+
+
 
     </div>
+
+
 
     <!-- Galereya va Ma'lumot uchun Modal Oyna -->
+
     <div id="productModal" class="modal">
+
         <div class="modal-content">
+
             <span class="close-btn" onclick="closeModal()">&times;</span>
+
             
+
             <img id="modalMainImg" class="main-modal-img" src="" alt="Mahsulot rasmi">
+
             <video id="modalMainVideo" class="main-modal-video" controls></video>
+
             
+
             <div id="modalThumbnails" class="thumbnails-container"></div>
 
+
+
             <h3 id="modalTitle" style="color: #ffd700; margin: 10px 0 5px 0;"></h3>
+
             <div id="modalPrice" style="color: #28a745; font-size: 20px; font-weight: bold; margin-bottom: 8px;"></div>
+
             
+
             <div id="modalDesc" class="modal-desc-box"></div>
+
             
+
             <button class="modal-btn" onclick="selectThisProduct()">Bu soatni buyurtma qilish</button>
+
         </div>
+
     </div>
+
+
 
     <!-- Buyurtma va To'lov Formasi -->
+
     <div class="info-card">
+
         <h2>Buyurtma berish</h2>
 
+
+
         <div id="successMessage" class="success-message">
+
             ✅ Buyurtmangiz muvaffaqiyatli qabul qilindi!<br>
+
             <span style="font-size: 14px; font-weight: normal; color: #e0e0e0;">
+
                 Iltimos, Telegram orqali to'lov chekini (skrinshotini) yuborishni unutmang.
+
             </span>
+
         </div>
 
+
+
         <form id="orderForm">
+
             
+
             <div class="form-group">
+
                 <label for="product_select">Qaysi soatni buyurtma qilmoqchisiz?</label>
+
                 <select id="product_select" required>
+
                     <option value="">-- Soatni tanlang --</option>
-                    <option value="Yurakchali Bilaguzukli Juftlik Soati - 250,000 so'm">Yurakchali Bilaguzukli Juftlik Soati (250,000 so'm)</option>
+
                     <option value="HAMROH Juftlik Soati - 170,000 so'm">HAMROH Juftlik Soati (170,000 so'm)</option>
+
                     <option value="Hashamatli Juftlik Soati - 180,000 so'm">Hashamatli Juftlik Soati (180,000 so'm)</option>
+
                     <option value="Minimalist Klassik Juftlik Soati - 175,000 so'm">Minimalist Klassik Juftlik Soati (175,000 so'm)</option>
+
                 </select>
+
             </div>
 
+
+
             <div class="form-group">
+
                 <label for="name">Ismingiz:</label>
+
                 <input type="text" id="name" required placeholder="Masalan: Ali Valiyev">
+
             </div>
 
+
+
             <div class="form-group">
+
                 <label for="phone">Telefon raqamingiz:</label>
+
                 <input type="tel" id="phone" required placeholder="+998 90 123 45 67">
+
             </div>
 
+
+
             <div class="form-group">
+
                 <label for="region">Viloyatni tanlang:</label>
+
                 <select id="region" onchange="updateBtsBranches()" required>
+
                     <option value="">-- Viloyatni tanlang --</option>
+
                     <option value="Toshkent shahri">Toshkent shahri</option>
+
                     <option value="Toshkent viloyati">Toshkent viloyati</option>
+
                     <option value="Andijon viloyati">Andijon viloyati</option>
+
                     <option value="Buxoro viloyati">Buxoro viloyati</option>
+
                     <option value="Farg'ona viloyati">Farg'ona viloyati</option>
+
                     <option value="Jizzax viloyati">Jizzax viloyati</option>
+
                     <option value="Namangan viloyati">Namangan viloyati</option>
+
                     <option value="Navoiy viloyati">Navoiy viloyati</option>
+
                     <option value="Qashqadaryo viloyati">Qashqadaryo viloyati</option>
+
                     <option value="Qoraqalpog'iston">Qoraqalpog'iston Respublika</option>
+
                     <option value="Samarqand viloyati">Samarqand viloyati</option>
+
                     <option value="Sirdaryo viloyati">Sirdaryo viloyati</option>
+
                     <option value="Surxondaryo viloyati">Surxondaryo viloyati</option>
+
                     <option value="Xorazm viloyati">Xorazm viloyati</option>
+
                 </select>
+
             </div>
 
+
+
             <div class="form-group">
+
                 <label for="bts_branch">BTS filialini (shahar/tuman) tanlang:</label>
+
                 <select id="bts_branch" required>
+
                     <option value="">-- Oldin viloyatni tanlang --</option>
+
                 </select>
+
             </div>
+
+
 
             <div class="payment-info">
+
                 💳 <strong>To'lov uchun karta raqamlari:</strong><br>
+
                 Egasining ismi: <strong>Eshimatova Barno</strong>
+
                 
-                <div class="card-box">
-                    🔹 <b>Uzcard / Humo (Oddiy karta):</b><br>
-                    <span class="card-number">5614 6812 1336 3249</span>
-                </div>
 
                 <div class="card-box">
-                    🔹 <b>Uzum Karta / VISA:</b><br>
-                    <span class="card-number">4916 9903 6410 2761</span>
+
+                    🔹 <b>Uzcard / Humo (Oddiy karta):</b><br>
+
+                    <span class="card-number">5614 6812 1336 3249</span>
+
                 </div>
+
+
+
+                <div class="card-box">
+
+                    🔹 <b>Uzum Karta / VISA:</b><br>
+
+                    <span class="card-number">4916 9903 6410 2761</span>
+
+                </div>
+
                 <br>
+
                 <em>📌 <b>Eslatma:</b> To'lovni amalga oshirgach, to'lov cheki (kvitansiya skrinshoti)ni Telegram orqali yuborishingizni so'raymiz.</em>
+
             </div>
+
             <br>
 
+
+
             <button type="button" class="btn" onclick="sendOrder()">Buyurtmani Telegram orqali yuborish</button>
+
             
+
             <div class="contact-box">
+
                 <p style="margin-bottom: 8px; color: #ccc;">Qo'shimcha ma'lumot olish yoki savollaringiz bo'lsa:</p>
+
                 <a href="https://t.me/salihshomurodov" target="_blank" class="btn-tg">💬 Telegram orqali savol berish</a>
+
             </div>
+
         </form>
+
     </div>
 
+
+
     <script>
+
         let selectedProductName = "";
 
+
+
         function openModal(title, items, price, descHtml) {
+
             selectedProductName = title;
+
             document.getElementById('modalTitle').textContent = title;
+
             document.getElementById('modalPrice').textContent = price;
+
             document.getElementById('modalDesc').innerHTML = descHtml;
 
+
+
             const mainImg = document.getElementById('modalMainImg');
+
             const mainVideo = document.getElementById('modalMainVideo');
+
             const thumbContainer = document.getElementById('modalThumbnails');
+
             thumbContainer.innerHTML = '';
+
+
 
             mainVideo.pause();
 
+
+
             function showItem(item, thumbElement) {
+
                 document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+
                 thumbElement.classList.add('active');
 
+
+
                 if (item.type === 'image') {
+
                     mainVideo.style.display = 'none';
+
                     mainVideo.pause();
+
                     mainImg.style.display = 'block';
+
                     mainImg.src = item.src;
+
                 } else {
+
                     mainImg.style.display = 'none';
+
                     mainVideo.style.display = 'block';
+
                     mainVideo.src = item.src;
+
                 }
+
             }
+
+
 
             items.forEach((item, index) => {
+
                 const thumb = document.createElement('div');
+
                 thumb.className = 'thumb-item' + (index === 0 ? ' active' : '');
 
+
+
                 if (item.type === 'image') {
+
                     const img = document.createElement('img');
+
                     img.src = item.src;
+
                     thumb.appendChild(img);
+
                 } else {
+
                     const vidIcon = document.createElement('div');
+
                     vidIcon.className = 'video-indicator';
+
                     vidIcon.innerHTML = '▶';
+
                     
+
                     const vid = document.createElement('video');
+
                     vid.src = item.src;
+
                     thumb.appendChild(vid);
+
                     thumb.appendChild(vidIcon);
+
                 }
+
+
 
                 thumb.onclick = function() {
+
                     showItem(item, thumb);
+
                 };
 
+
+
                 thumbContainer.appendChild(thumb);
+
             });
 
+
+
             if(items[0].type === 'image') {
+
                 mainImg.style.display = 'block';
+
                 mainVideo.style.display = 'none';
+
                 mainImg.src = items[0].src;
+
             } else {
+
                 mainImg.style.display = 'none';
+
                 mainVideo.style.display = 'block';
+
                 mainVideo.src = items[0].src;
+
             }
+
+
 
             document.getElementById('productModal').style.display = 'flex';
+
         }
+
+
 
         function closeModal() {
+
             document.getElementById('productModal').style.display = 'none';
+
             document.getElementById('modalMainVideo').pause();
+
         }
+
+
 
         function selectThisProduct() {
+
             const selectElement = document.getElementById('product_select');
+
             for (let i = 0; i < selectElement.options.length; i++) {
+
                 if (selectElement.options[i].value === selectedProductName) {
+
                     selectElement.selectedIndex = i;
+
                     break;
+
                 }
+
             }
+
             closeModal();
+
             selectElement.scrollIntoView({ behavior: 'smooth' });
+
         }
+
+
 
         window.onclick = function(event) {
+
             const modal = document.getElementById('productModal');
+
             if (event.target === modal) {
+
                 closeModal();
+
             }
+
         }
 
+
+
         const btsData = {
+
             "Toshkent shahri": ["Toshkent Markaziy BTS", "Toshkent Yunusobod BTS", "Toshkent Chilonzor BTS", "Toshkent Sergeli BTS", "Toshkent Qo'yliq BTS", "Toshkent Yakkasaroy BTS"],
+
             "Toshkent viloyati": ["Chirchiq BTS", "Olmaliq BTS", "Angren BTS", "Yangiyo'l BTS", "Bekobod BTS", "Parkent BTS", "G'azalkent BTS", "Pskent BTS", "Zangiota BTS"],
+
             "Andijon viloyati": ["Andijon shahar BTS", "Asaka BTS", "Shahrixon BTS", "Xo'jaobod BTS", "Marhamat BTS", "Qorasuv BTS", "Izboskan BTS", "Paxtaobod BTS"],
+
             "Buxoro viloyati": ["Buxoro shahar BTS", "G'ijduvon BTS", "Kogon BTS", "Qorakul BTS", "Olot BTS", "Vobkent BTS", "Romiytan BTS", "Jondor BTS"],
+
             "Farg'ona viloyati": ["Farg'ona shahar BTS", "Qo'qon BTS", "Marg'ilon BTS", "Rishton BTS", "Oltiariq BTS", "Quvasoy BTS", "Beshariq BTS", "Toshloq BTS"],
+
             "Jizzax viloyati": ["Jizzax shahar BTS", "G'allaorol BTS", "Zomin BTS", "Paxtakor BTS", "Dostlik BTS", "Zarbdor BTS"],
+
             "Namangan viloyati": ["Namangan shahar BTS", "Chust BTS", "Kosonsoy BTS", "Pop BTS", "Uychi BTS", "To'raqo'rg'on BTS", "Uchqo'rg'on BTS"],
+
             "Navoiy viloyati": ["Navoiy shahar boshqarmasi", "Zarafshon BTS", "Uchquduq BTS", "Karmana BTS", "Nurota BTS", "Qiziltepa BTS"],
+
             "Qashqadaryo viloyati": ["Qarshi shahar BTS", "Shahrisabz BTS", "Kitob BTS", "Koson BTS", "G'uzor BTS", "Muborak BTS", "Yakkabog' BTS", "Kamashi BTS"],
+
             "Qoraqalpog'iston": ["Nukus shahar BTS", "To'rtko'l BTS", "Beruniy BTS", "Xo'jayli BTS", "Qo'ng'irot BTS", "Chimboy BTS", "Taqiatosh BTS"],
+
             "Samarqand viloyati": ["Samarqand shahar BTS", "Kattaqo'rg'on BTS", "Urgut BTS", "Jomboy BTS", "Bulung'ur BTS", "Oqdaryo BTS", "Payariq BTS", "Pastdarg'om BTS", "Ishtixon BTS"],
+
             "Sirdaryo viloyati": ["Guliston shahar BTS", "Yangiyer BTS", "Shirin BTS", "Sirdaryo tuman BTS", "Boyovut BTS", "Oqoltin BTS"],
+
             "Surxondaryo viloyati": ["Termiz shahar BTS", "Denov BTS", "Kumqo'rg'on BTS", "Sherobod BTS", "Jarqo'rg'on BTS", "Sariosiyo BTS", "Shourchi BTS"],
+
             "Xorazm viloyati": ["Urganch shahar BTS", "Xiva BTS", "Xonqa BTS", "Gurlan BTS", "Shovot BTS", "Hazorasp BTS", "Qo'shko'pir BTS"]
+
         };
 
+
+
         function updateBtsBranches() {
+
             const regionSelect = document.getElementById("region");
+
             const btsSelect = document.getElementById("bts_branch");
+
             const selectedRegion = regionSelect.value;
+
+
 
             btsSelect.innerHTML = '<option value="">-- BTS filialini tanlang --</option>';
 
+
+
             if (selectedRegion && btsData[selectedRegion]) {
+
                 btsData[selectedRegion].forEach(function(branch) {
+
                     const option = document.createElement("option");
+
                     option.value = branch;
+
                     option.textContent = branch;
+
                     btsSelect.appendChild(option);
+
                 });
+
             }
+
         }
+
+
 
         function sendOrder() {
+
             var product = document.getElementById('product_select').value;
+
             var name = document.getElementById('name').value;
+
             var phone = document.getElementById('phone').value;
+
             var region = document.getElementById('region').value;
+
             var bts = document.getElementById('bts_branch').value;
 
+
+
             if(!product || !name || !phone || !region || !bts) {
+
                 alert("Iltimos, barcha maydonlarni hamda soat turini tanlang!");
+
                 return;
+
             }
 
+
+
             var successBox = document.getElementById('successMessage');
+
             successBox.style.display = 'block';
+
             successBox.scrollIntoView({ behavior: 'smooth' });
 
+
+
             var text = "Yangi buyurtma!%0A%0A" +
+
                        "⌚ Mahsulot: " + encodeURIComponent(product) + "%0A" +
+
                        "👤 Ismi: " + encodeURIComponent(name) + "%0A" +
+
                        "📞 Tel: " + encodeURIComponent(phone) + "%0A" +
+
                        "📍 Viloyat: " + encodeURIComponent(region) + "%0A" +
+
                        "📦 BTS Filiali: " + encodeURIComponent(bts) + "%0A" +
+
                        "🚚 Yetkazib berish: BTS orqali 3 kun ichida (BEPUL)";
 
+
+
             window.open("https://t.me/salihshomurodov?text=" + text, '_blank');
+
         }
+
     </script>
 
+
+
 </body>
-</html>
+
+</html> 
