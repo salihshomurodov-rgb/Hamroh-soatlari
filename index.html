@@ -288,7 +288,7 @@
             <div class="click-hint">🔍 Batafsil ko'rish</div>
         </div>
 
-        <!-- 2-Mahsulot (250 minglik - 11.jpg va 22.jpg qo'shildi) -->
+        <!-- 2-Mahsulot (250 minglik) -->
         <div class="product-card" onclick="openModal(
             'Yurakchali Bilaguzukli Juftlik Soati - 250,000 so\'m', 
             [
@@ -500,6 +500,10 @@
                 } else {
                     thumb = document.createElement('img');
                     thumb.src = item.src;
+                    // Agar rasm topilmasa, xatolik chiqib qolmasligi uchun yashiramiz
+                    thumb.onerror = function() {
+                        this.style.display = 'none';
+                    };
                 }
                 thumb.className = 'modal-thumb' + (index === 0 ? ' active' : '');
                 thumb.onclick = function() {
@@ -574,7 +578,7 @@
         function sendOrder() {
             var product = document.getElementById('product_select').value;
             var name = document.getElementById('name').value;
-            var phone = document.getElementById('phone').value;
+            var phone = document.getElementById('phone'].value;
             var region = document.getElementById('region').value;
             var bts = document.getElementById('bts_branch').value;
 
@@ -588,11 +592,11 @@
             successBox.scrollIntoView({ behavior: 'smooth' });
 
             var text = "Yangi buyurtma!%0A%0A" +
-                       "⌚ Mahsulot: " + encodeURIComponent(product) + "%0A" +
+                       "📦 Mahsulot: " + encodeURIComponent(product) + "%0A" +
                        "👤 Ismi: " + encodeURIComponent(name) + "%0A" +
                        "📞 Tel: " + encodeURIComponent(phone) + "%0A" +
                        "📍 Viloyat: " + encodeURIComponent(region) + "%0A" +
-                       "📦 BTS Filiali: " + encodeURIComponent(bts) + "%0A" +
+                       "🏢 BTS Filiali: " + encodeURIComponent(bts) + "%0A" +
                        "🚚 Yetkazib berish: BTS orqali 3 kun ichida (BEPUL)";
 
             window.open("https://t.me/salihshomurodov?text=" + text, '_blank');
@@ -601,4 +605,3 @@
 
 </body>
 </html>
-
